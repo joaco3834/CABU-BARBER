@@ -79,7 +79,7 @@ section{padding:84px 0;position:relative}
 .hero h1 .word{display:inline-block}
 .hero h1 .g{background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,var(--gold-dark));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{font-size:1.08rem;color:#d9d0c2;max-width:34ch}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
 .hero-actions .btn{flex:1 1 200px}
 
 /* Franja */
@@ -95,7 +95,7 @@ section{padding:84px 0;position:relative}
 .service::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:repeating-linear-gradient(-45deg,var(--gold) 0 10px,transparent 10px 20px);opacity:.75}
 .service .tag{position:absolute;top:22px;right:20px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#1a1206;background:var(--gold);padding:5px 10px;border-radius:999px;font-weight:700}
 .service h3{font-family:var(--display);font-weight:400;font-size:2.2rem;letter-spacing:.02em;line-height:1}
-.service p{color:var(--muted);margin:8px 0 18px;font-size:.96rem}
+.service h3{margin-bottom:18px}
 .service .row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .price{font-family:var(--display);font-size:2.9rem;line-height:1;color:var(--gold-2);letter-spacing:.02em}
 .service .btn{min-height:46px;padding:0 20px;font-size:.92rem}
@@ -213,7 +213,6 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
     <div class="wrap hero-content">
       <div class="eyebrow h-anim">Barbería · Catamarca</div>
       <h1><span class="word">Cabu</span><span class="word g">barber</span></h1>
-      <p class="h-anim">Fades bien prolijos, diseños a navaja y cortes con onda. Te atendemos todos los días, de 10 a 22&nbsp;h.</p>
       <div class="hero-actions h-anim">
         <a class="btn btn-gold" href="#turno">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -244,7 +243,6 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
       <div class="services">
         <article class="service reveal-card">
           <h3>Corte</h3>
-          <p>Fade, degradado, taper o el corte que traigas en mente. Con terminación prolija y diseño si querés.</p>
           <div class="row">
             <span class="price">$10.000</span>
             <a class="btn btn-gold" href="#turno" data-service="Corte">Reservar</a>
@@ -253,7 +251,6 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
         <article class="service reveal-card">
           <span class="tag">Completo</span>
           <h3>Corte + barba</h3>
-          <p>El corte más el arreglo de barba: perfilado, rebaje y contornos bien marcados.</p>
           <div class="row">
             <span class="price">$12.000</span>
             <a class="btn btn-gold" href="#turno" data-service="Corte + barba">Reservar</a>
