@@ -193,6 +193,106 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ================= Reservador por pasos ================= */
+.booker{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;display:grid;gap:16px;position:relative}
+.bk-head{display:flex;align-items:center;gap:10px}
+.bk-back{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 12px 0 8px;border-radius:999px;border:1px solid #3a3229;background:#0f0e0c;color:var(--text);font-weight:700;font-size:.85rem;cursor:pointer;transition:opacity .25s,transform .25s,border-color .2s}
+.bk-back svg{width:18px;height:18px}
+.bk-back:hover{border-color:var(--gold)}
+.bk-back.oculto{opacity:0;pointer-events:none;transform:translateX(-6px)}
+.bk-steps{list-style:none;display:flex;align-items:center;flex:1;min-width:0}
+.bk-steps li{display:flex;align-items:center;flex:1}
+.bk-steps li:last-child{flex:0 0 auto}
+.bk-dot{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;border:1.5px solid #3a3229;background:#0f0e0c;color:var(--muted);font-weight:700;font-size:.88rem;cursor:default;padding:0;transition:background .3s,border-color .3s,color .3s,box-shadow .3s,transform .3s}
+.bk-steps li.done .bk-dot{background:linear-gradient(135deg,var(--gold-2),var(--gold));border-color:var(--gold);color:#1a1206;cursor:pointer}
+.bk-steps li.done .bk-dot:hover{transform:scale(1.08)}
+.bk-steps li.current .bk-dot{border-color:var(--gold);color:var(--gold-2);box-shadow:0 0 0 4px rgba(214,168,78,.16)}
+.bk-line{flex:1;height:2px;margin:0 4px;background:#3a3229;position:relative;overflow:hidden;border-radius:2px}
+.bk-line::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.bk-steps li.done .bk-line::after{transform:scaleX(1)}
+
+.bk-body{display:grid;gap:16px}
+.bk-sum{border:1px solid #3a3229;border-radius:16px;padding:12px 14px;background:linear-gradient(160deg,rgba(214,168,78,.10),rgba(214,168,78,.02))}
+.bk-sum-title{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.bk-sum dl{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}
+.bk-sum dt{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.bk-sum dd{font-weight:700;font-size:.98rem;line-height:1.25}
+.bk-sum dd.vacio{color:#5d554b;font-weight:500}
+.bk-sum dd.flash{animation:flash .6s ease}
+@keyframes flash{0%{color:var(--gold-2);transform:translateY(4px);opacity:0}100%{transform:none;opacity:1}}
+
+.bk-main{position:relative;min-width:0}
+.bk-panel{display:none;padding:0}
+.booker textarea{font:inherit;color:inherit}
+.bk-panel.on{display:block;animation:bkIn .42s cubic-bezier(.2,.8,.2,1)}
+.bk-panel.on.back{animation-name:bkBack}
+@keyframes bkIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes bkBack{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.bk-title{font-family:var(--display);font-weight:400;font-size:2rem;line-height:1;letter-spacing:.02em;margin-bottom:14px;outline:none}
+.bk-title small{display:block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.bk-note{font-size:.84rem;color:var(--muted);margin-top:12px}
+
+/* 1. Servicio */
+.bk-svcs{display:grid;gap:12px}
+.bk-svc{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:84px;padding:18px 54px 18px 18px;text-align:left;border-radius:18px;border:1px solid #3a3229;background:#0f0e0c;color:var(--text);cursor:pointer;transition:border-color .25s,background .25s,transform .2s}
+.bk-svc:active{transform:scale(.98)}
+.bk-svc:hover{border-color:#5a4a32}
+.bk-svc-name{font-weight:700;font-size:1.1rem}
+.bk-svc-price{font-family:var(--display);font-size:2rem;line-height:1;color:var(--gold-2);letter-spacing:.02em}
+.bk-check{position:absolute;right:16px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:50%;border:1.5px solid #4a4033;transition:all .25s}
+.bk-svc.sel{border-color:var(--gold);background:linear-gradient(135deg,rgba(214,168,78,.16),rgba(214,168,78,.04));box-shadow:inset 0 0 0 1px var(--gold)}
+.bk-svc.sel .bk-check{background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1206' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/15px no-repeat;border-color:var(--gold)}
+
+/* 2. Fecha */
+.bk-days{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;margin:0 -16px;padding:4px 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 28px),transparent)}
+.bk-days::-webkit-scrollbar{display:none}
+.bk-day{flex:0 0 76px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px 10px;border-radius:16px;border:1px solid #3a3229;background:#0f0e0c;color:var(--text);cursor:pointer;transition:border-color .25s,background .25s,transform .2s}
+.bk-day:active{transform:scale(.96)}
+.bk-day .dw{font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bk-day .dn{font-family:var(--display);font-size:2.1rem;line-height:1;letter-spacing:.02em}
+.bk-day .dm{font-size:.66rem;color:var(--gold);white-space:nowrap}
+.bk-day.sel{border-color:var(--gold);background:linear-gradient(180deg,rgba(214,168,78,.22),rgba(214,168,78,.05));box-shadow:inset 0 0 0 1px var(--gold)}
+.bk-day.sel .dw{color:var(--gold-2)}
+.bk-day.off{opacity:.38;cursor:not-allowed;background:#121110}
+.bk-day.off .dm{color:var(--muted)}
+
+/* 3. Horario */
+.bk-group+.bk-group{margin-top:16px}
+.bk-group-t{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.bk-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bk-slot{min-height:58px;border-radius:14px;border:1px solid #3a3229;background:#0f0e0c;color:var(--text);font-weight:700;font-size:1.08rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;transition:border-color .2s,background .2s,transform .15s}
+.bk-slot:hover{border-color:#5a4a32}
+.bk-slot:active{transform:scale(.95)}
+.bk-slot small{font-size:.64rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.bk-slot.sel{border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#1a1206}
+.bk-slot.off{background:#141312;border-color:#24211d;color:#5a534a;cursor:not-allowed;text-decoration:line-through;text-decoration-color:rgba(90,83,74,.6)}
+.bk-slot.off small{text-decoration:none}
+.bk-empty{padding:22px 16px;border:1px dashed #3d342a;border-radius:16px;text-align:center;color:var(--muted)}
+
+/* 4. Datos */
+.bk-form{display:grid;gap:16px}
+textarea.input{min-height:96px;padding:14px 16px;resize:vertical;line-height:1.4}
+.opc{text-transform:none;letter-spacing:0;font-weight:500}
+.bk-send{width:100%;background:var(--wa);color:#05210f;box-shadow:0 10px 30px -12px rgba(37,211,102,.7)}
+.bk-send:hover{transform:translateY(-2px)}
+
+@media (min-width:720px){
+  .booker{padding:24px}
+  .bk-days{margin:0;padding:4px 2px 10px}
+  .bk-slots{grid-template-columns:repeat(4,1fr)}
+}
+@media (min-width:1000px){
+  .booking .wrap{display:block}
+  .booker{margin-top:34px;padding:28px}
+  .bk-body{grid-template-columns:1fr 260px;align-items:start;gap:28px}
+  .bk-sum{order:2;position:sticky;top:100px;padding:18px}
+  .bk-sum dl{grid-template-columns:1fr;gap:12px}
+  .bk-sum dd{font-size:1.1rem}
+  .bk-head{max-width:calc(100% - 288px)}
+  .bk-slots{grid-template-columns:repeat(5,1fr)}
+}
 </style>
 </head>
 <body>
@@ -299,41 +399,67 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
         <h2 class="reveal">Pedí tu <span class="gold">turno</span></h2>
         <p class="lead reveal">Completá esto y se te abre WhatsApp con el mensaje listo. Solo tenés que mandarlo y te confirmamos el horario.</p>
       </div>
-      <form class="form reveal" id="bookingForm" novalidate>
-        <div class="field">
-          <label for="nombre">Tu nombre</label>
-          <input class="input" id="nombre" name="nombre" type="text" autocomplete="given-name" placeholder="Ej: Juan" maxlength="40" required>
+      <div class="booker reveal" id="booker">
+        <div class="bk-head">
+          <button class="bk-back" type="button" id="bkBack" aria-label="Volver al paso anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Volver
+          </button>
+          <ol class="bk-steps" id="bkSteps" aria-label="Pasos para reservar">
+            <li data-s="1"><button type="button" class="bk-dot" aria-label="Paso 1: servicio">1</button><span class="bk-line"></span></li>
+            <li data-s="2"><button type="button" class="bk-dot" aria-label="Paso 2: fecha">2</button><span class="bk-line"></span></li>
+            <li data-s="3"><button type="button" class="bk-dot" aria-label="Paso 3: horario">3</button><span class="bk-line"></span></li>
+            <li data-s="4"><button type="button" class="bk-dot" aria-label="Paso 4: tus datos">4</button></li>
+          </ol>
         </div>
-        <fieldset class="field">
-          <legend>Servicio</legend>
-          <div class="choices">
-            <div class="choice">
-              <input type="radio" name="servicio" id="s-corte" value="Corte" data-price="$10.000" checked>
-              <label for="s-corte">Corte <b>$10.000</b></label>
-            </div>
-            <div class="choice">
-              <input type="radio" name="servicio" id="s-barba" value="Corte + barba" data-price="$12.000">
-              <label for="s-barba">Corte + barba <b>$12.000</b></label>
-            </div>
-          </div>
-        </fieldset>
-        <div class="two">
-          <div class="field">
-            <label for="dia">Día</label>
-            <input class="input" id="dia" name="dia" type="date" required>
-          </div>
-          <div class="field">
-            <label for="hora">Horario</label>
-            <select class="input" id="hora" name="hora" required></select>
+        <div class="bk-body">
+          <aside class="bk-sum" aria-label="Resumen del turno">
+            <div class="bk-sum-title">Tu turno</div>
+            <dl>
+              <div><dt>Servicio</dt><dd id="sumServicio" class="vacio">—</dd></div>
+              <div><dt>Precio</dt><dd id="sumPrecio" class="vacio">—</dd></div>
+              <div><dt>Fecha</dt><dd id="sumFecha" class="vacio">—</dd></div>
+              <div><dt>Hora</dt><dd id="sumHora" class="vacio">—</dd></div>
+            </dl>
+          </aside>
+          <div class="bk-main">
+            <section class="bk-panel on" data-step="1" aria-labelledby="bkT1">
+              <h3 class="bk-title" id="bkT1" tabindex="-1"><small>Paso 1 de 4</small>¿Qué te hacés?</h3>
+              <div class="bk-svcs">
+                <button type="button" class="bk-svc" data-svc="Corte"><span class="bk-svc-name">Corte</span><span class="bk-svc-price">$10.000</span><span class="bk-check" aria-hidden="true"></span></button>
+                <button type="button" class="bk-svc" data-svc="Corte + barba"><span class="bk-svc-name">Corte + barba</span><span class="bk-svc-price">$12.000</span><span class="bk-check" aria-hidden="true"></span></button>
+              </div>
+            </section>
+            <section class="bk-panel" data-step="2" aria-labelledby="bkT2">
+              <h3 class="bk-title" id="bkT2" tabindex="-1"><small>Paso 2 de 4</small>¿Qué día?</h3>
+              <div class="bk-days" id="bkDays" role="list"></div>
+              <p class="bk-note">Deslizá para ver más días.</p>
+            </section>
+            <section class="bk-panel" data-step="3" aria-labelledby="bkT3">
+              <h3 class="bk-title" id="bkT3" tabindex="-1"><small>Paso 3 de 4</small>¿A qué hora?</h3>
+              <div id="bkHours"></div>
+              <p class="bk-note">Los horarios en gris ya están ocupados o pasaron. De 13 a 15 h no damos turnos.</p>
+            </section>
+            <section class="bk-panel" data-step="4" aria-labelledby="bkT4">
+              <h3 class="bk-title" id="bkT4" tabindex="-1"><small>Paso 4 de 4</small>Tus datos</h3>
+              <form id="bookingForm" class="bk-form" novalidate>
+                <div class="field">
+                  <label for="nombre">Tu nombre</label>
+                  <input class="input" id="nombre" name="nombre" type="text" autocomplete="given-name" placeholder="Ej: Juan" maxlength="40" required>
+                </div>
+                <div class="field">
+                  <label for="comentario">Comentario <span class="opc">(opcional)</span></label>
+                  <textarea class="input" id="comentario" name="comentario" rows="3" maxlength="200" placeholder="Ej: quiero el mismo corte de la foto"></textarea>
+                </div>
+                <p class="error" id="bkError" role="alert"></p>
+                <button class="btn bk-send" type="submit">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 17.9L.2 24l6.3-1.7A11.8 11.8 0 1 0 12 .2Z"/></svg>
+                  Enviar por WhatsApp
+                </button>
+              </form>
+            </section>
           </div>
         </div>
-        <p class="hint">Atendemos todos los días, de 10 a 22 h (de 13 a 15 h no damos turnos).</p>
-        <p class="error" id="formError" role="alert"></p>
-        <button class="btn" type="submit">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 17.9L.2 24l6.3-1.7A11.8 11.8 0 1 0 12 .2Z"/></svg>
-          Enviar por WhatsApp
-        </button>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -442,10 +568,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (id.length < 2) return;
       e.preventDefault();
       var svc = a.getAttribute('data-service');
-      if (svc) {
-        var r = document.querySelector('input[name="servicio"][value="' + svc + '"]');
-        if (r) r.checked = true;
-      }
+      if (svc) bkElegirServicio(svc);
       scrollToId(id);
     });
   });
@@ -546,20 +669,18 @@ document.addEventListener('DOMContentLoaded', function () {
     touchX = null;
   });
 
-  /* ---------- Formulario de turno ---------- */
+  /* ---------- Reservador de turnos por pasos ---------- */
+  var booker = document.getElementById('booker');
   var form = document.getElementById('bookingForm');
-  var dia = document.getElementById('dia');
-  var hora = document.getElementById('hora');
-  var err = document.getElementById('formError');
+  var err = document.getElementById('bkError');
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function isoDate(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
 
-  var today = new Date();
-  dia.min = isoDate(today);
-  var max = new Date(); max.setDate(max.getDate() + 60);
-  dia.max = isoDate(max);
-  dia.value = isoDate(today);
+  var SERVICIOS = { 'Corte': '$10.000', 'Corte + barba': '$12.000' };
+  var DIAS = 14;
+  var sel = { servicio: null, dia: null, hora: null };
+  var paso = 1;
 
   /* Turnos cada 20 minutos, de 10:00 a 21:40 */
   var PASO = 20;
@@ -655,59 +776,177 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(function () { /* si falla, la página sigue andando sin bloquear */ });
   }
 
-  function fillHours() {
-    var prev = hora.value;
-    var now = new Date();
-    var isToday = dia.value === isoDate(now);
-    var minMinutes = isToday ? now.getHours() * 60 + now.getMinutes() + 30 : 0;
-    var tomados = ocupados[dia.value] || {};
-    hora.innerHTML = '';
-    var ph = document.createElement('option');
-    ph.value = ''; ph.textContent = 'Elegí un horario';
-    hora.appendChild(ph);
-    var libres = 0;
-    if (!tomados.todo) {
-      for (var m = 10 * 60; m < 22 * 60; m += PASO) {
-        if (m < minMinutes) continue;
-        var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
-        if (m >= DESCANSO_DESDE && m < DESCANSO_HASTA) continue;
-        var o = document.createElement('option');
-        o.value = t;
-        if (tomados[t]) { o.disabled = true; o.textContent = t + ' h — ocupado'; }
-        else { o.textContent = t + ' h'; libres++; }
-        hora.appendChild(o);
-      }
+  /* Horarios de un día: libre, ocupado (planilla) o pasado (si es hoy) */
+  function horariosDe(iso) {
+    var tomados = ocupados[iso] || {};
+    if (tomados.todo) return { cerrado: true, lista: [], libres: 0 };
+    var now = new Date(), esHoy = iso === isoDate(now);
+    var ahora = now.getHours() * 60 + now.getMinutes();
+    var lista = [], libres = 0;
+    for (var m = 10 * 60; m < 22 * 60; m += PASO) {
+      if (m >= DESCANSO_DESDE && m < DESCANSO_HASTA) continue;
+      var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
+      var estado = tomados[t] ? 'ocupado' : (esHoy && m <= ahora ? 'pasado' : 'libre');
+      if (estado === 'libre') libres++;
+      lista.push({ t: t, m: m, estado: estado });
     }
-    if (tomados.todo) ph.textContent = 'Ese día no hay turnos, elegí otro';
-    else if (!libres) ph.textContent = isToday ? 'Hoy ya no quedan horarios, elegí otro día' : 'Ese día está completo, elegí otro';
-    var po = prev && hora.querySelector('option[value="' + prev + '"]');
-    if (po && !po.disabled) hora.value = prev;
+    return { cerrado: false, lista: lista, libres: libres };
   }
-  fillHours();
+
+  function fechaDe(iso) { var p = iso.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function corto(d, op) { return d.toLocaleDateString('es-AR', op).replace('.', ''); }
+  function cap(x) { return x.charAt(0).toUpperCase() + x.slice(1); }
+  function fechaCorta(iso) {
+    var d = fechaDe(iso), hoy = iso === isoDate(new Date());
+    return (hoy ? 'Hoy · ' : '') + cap(corto(d, { weekday: 'short' })) + ' ' + d.getDate() + ' ' + corto(d, { month: 'short' });
+  }
+
+  function renderDias() {
+    var cont = document.getElementById('bkDays'), html = '', base = new Date();
+    for (var k = 0; k < DIAS; k++) {
+      var d = new Date(base.getFullYear(), base.getMonth(), base.getDate() + k), iso = isoDate(d);
+      var h = horariosDe(iso), off = h.cerrado || !h.libres;
+      var nota = h.cerrado ? 'Cerrado' : (!h.libres ? (k === 0 ? 'Sin turnos' : 'Completo') : h.libres + ' libres');
+      html += '<button type="button" role="listitem" class="bk-day' + (sel.dia === iso ? ' sel' : '') + (off ? ' off' : '') + '" data-dia="' + iso + '"' +
+        (off ? ' disabled aria-disabled="true"' : '') + ' aria-label="' + cap(d.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })) + ', ' + nota + '">' +
+        '<span class="dw">' + (k === 0 ? 'Hoy' : cap(corto(d, { weekday: 'short' }))) + '</span>' +
+        '<span class="dn">' + d.getDate() + '</span>' +
+        '<span class="dm">' + nota + '</span></button>';
+    }
+    cont.innerHTML = html;
+  }
+
+  function renderHoras() {
+    var cont = document.getElementById('bkHours');
+    if (!sel.dia) { cont.innerHTML = ''; return; }
+    var h = horariosDe(sel.dia);
+    if (sel.hora && !h.lista.some(function (x) { return x.t === sel.hora && x.estado === 'libre'; })) { sel.hora = null; resumen(); }
+    if (h.cerrado || !h.libres) {
+      cont.innerHTML = '<div class="bk-empty">' + (h.cerrado ? 'Ese día no hay turnos.' : 'Ese día ya no quedan horarios libres.') + ' Volvé y elegí otro día.</div>';
+      return;
+    }
+    function grupo(titulo, filtro) {
+      var items = h.lista.filter(filtro); if (!items.length) return '';
+      return '<div class="bk-group"><div class="bk-group-t">' + titulo + '</div><div class="bk-slots">' + items.map(function (x) {
+        var off = x.estado !== 'libre';
+        return '<button type="button" class="bk-slot' + (off ? ' off' : '') + (sel.hora === x.t ? ' sel' : '') + '" data-hora="' + x.t + '"' +
+          (off ? ' disabled aria-disabled="true"' : '') + ' aria-label="' + x.t + ' horas' + (x.estado === 'ocupado' ? ', ocupado' : x.estado === 'pasado' ? ', ya pasó' : '') + '">' +
+          x.t + (off ? '<small>' + (x.estado === 'ocupado' ? 'ocupado' : 'pasó') + '</small>' : '') + '</button>';
+      }).join('') + '</div></div>';
+    }
+    cont.innerHTML = grupo('Mañana', function (x) { return x.m < 13 * 60; }) + grupo('Tarde y noche', function (x) { return x.m >= 15 * 60; });
+  }
+
+  /* La planilla llama a fillHours() cuando termina de cargar: redibuja días y horarios */
+  function fillHours() { renderDias(); renderHoras(); }
+
+  function poner(id, txt) {
+    var el = document.getElementById(id);
+    var nuevo = txt || '—';
+    if (el.textContent !== nuevo) {
+      el.textContent = nuevo;
+      el.classList.toggle('vacio', !txt);
+      el.classList.remove('flash'); void el.offsetWidth; if (txt) el.classList.add('flash');
+    }
+  }
+  function resumen() {
+    poner('sumServicio', sel.servicio);
+    poner('sumPrecio', sel.servicio ? SERVICIOS[sel.servicio] : '');
+    poner('sumFecha', sel.dia ? fechaCorta(sel.dia) : '');
+    poner('sumHora', sel.hora ? sel.hora + ' h' : '');
+    booker.querySelectorAll('.bk-svc').forEach(function (b) {
+      var on = b.getAttribute('data-svc') === sel.servicio;
+      b.classList.toggle('sel', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  function irA(n, opts) {
+    opts = opts || {};
+    var atras = n < paso;
+    paso = n;
+    err.textContent = '';
+    booker.querySelectorAll('.bk-panel').forEach(function (p) {
+      var on = +p.getAttribute('data-step') === n;
+      p.classList.toggle('on', on);
+      p.classList.toggle('back', on && atras);
+      p.hidden = !on;
+    });
+    booker.querySelectorAll('#bkSteps li').forEach(function (li) {
+      var k = +li.getAttribute('data-s');
+      li.classList.toggle('done', k < n);
+      li.classList.toggle('current', k === n);
+      var dot = li.querySelector('.bk-dot');
+      dot.textContent = k < n ? '✓' : k;
+      dot.disabled = k >= n;
+      if (k === n) dot.setAttribute('aria-current', 'step'); else dot.removeAttribute('aria-current');
+    });
+    var back = document.getElementById('bkBack');
+    back.classList.toggle('oculto', n === 1);
+    back.disabled = n === 1;
+    if (n === 2) {
+      renderDias();
+      var s = booker.querySelector('.bk-day.sel') || booker.querySelector('.bk-day:not(.off)');
+      if (s && s.scrollIntoView) s.parentNode.scrollLeft = Math.max(0, s.offsetLeft - 24);
+    }
+    if (n === 3) renderHoras();
+    if (!opts.sinScroll) {
+      var top = booker.getBoundingClientRect().top;
+      if (top < 0 || top > innerHeight * 0.6) scrollToId('#booker');
+    }
+    var t = booker.querySelector('.bk-panel.on .bk-title');
+    if (t && opts.foco !== false) t.focus({ preventScroll: true });
+    if (n === 4) setTimeout(function () { if (!form.nombre.value) form.nombre.focus({ preventScroll: true }); }, 380);
+  }
+
+  function bkElegirServicio(svc) {
+    if (!SERVICIOS[svc]) return;
+    sel.servicio = svc; resumen(); irA(2, { sinScroll: true });
+  }
+
+  booker.addEventListener('click', function (e) {
+    var b;
+    if ((b = e.target.closest('.bk-svc'))) { sel.servicio = b.getAttribute('data-svc'); resumen(); setTimeout(function () { irA(2); }, 220); return; }
+    if ((b = e.target.closest('.bk-day'))) {
+      if (b.disabled) return;
+      if (sel.dia !== b.getAttribute('data-dia')) sel.hora = null;
+      sel.dia = b.getAttribute('data-dia'); resumen();
+      booker.querySelectorAll('.bk-day').forEach(function (x) { x.classList.toggle('sel', x === b); });
+      setTimeout(function () { irA(3); }, 220); return;
+    }
+    if ((b = e.target.closest('.bk-slot'))) {
+      if (b.disabled) return;
+      sel.hora = b.getAttribute('data-hora'); resumen();
+      booker.querySelectorAll('.bk-slot').forEach(function (x) { x.classList.toggle('sel', x === b); });
+      setTimeout(function () { irA(4); }, 220); return;
+    }
+    if ((b = e.target.closest('.bk-dot'))) { var k = +b.closest('li').getAttribute('data-s'); if (k < paso) irA(k); return; }
+    if (e.target.closest('#bkBack') && paso > 1) irA(paso - 1);
+  });
+
+  renderDias();
+  resumen();
+  irA(1, { sinScroll: true, foco: false });
   cargarOcupados();
-  dia.addEventListener('change', function () { fillHours(); err.textContent = ''; });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     err.textContent = '';
     var nombre = form.nombre.value.trim();
-    var svc = form.querySelector('input[name="servicio"]:checked');
+    var comentario = form.comentario.value.trim();
+    if (!sel.servicio) { irA(1); return; }
+    if (!sel.dia) { irA(2); return; }
+    if (!sel.hora) { irA(3); return; }
     if (!nombre) { err.textContent = 'Poné tu nombre así sabemos quién sos.'; form.nombre.focus(); return; }
-    if (!dia.value) { err.textContent = 'Elegí el día.'; dia.focus(); return; }
-    if (dia.value < dia.min) { err.textContent = 'Ese día ya pasó, elegí otro.'; dia.focus(); return; }
-    if (!hora.value) { err.textContent = 'Elegí un horario.'; hora.focus(); return; }
-    var tom = ocupados[dia.value] || {};
-    if (tom.todo || tom[hora.value]) { err.textContent = 'Ese horario ya está ocupado, elegí otro.'; fillHours(); hora.focus(); return; }
+    var libre = horariosDe(sel.dia).lista.some(function (x) { return x.t === sel.hora && x.estado === 'libre'; });
+    if (!libre) { sel.hora = null; resumen(); irA(3); err.textContent = ''; return; }
 
-    var p = dia.value.split('-');
-    var fecha = new Date(+p[0], +p[1] - 1, +p[2]);
-    var diaTxt = fecha.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' });
-
+    var diaTxt = fechaDe(sel.dia).toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' });
     var msg = 'Hola Uriel! Soy ' + nombre + ' y quiero sacar un turno en Cabubarber.\n\n' +
-      '✂️ Servicio: ' + svc.value + ' (' + svc.getAttribute('data-price') + ')\n' +
+      '✂️ Servicio: ' + sel.servicio + ' (' + SERVICIOS[sel.servicio] + ')\n' +
       '📅 Día: ' + diaTxt + '\n' +
-      '🕐 Horario: ' + hora.value + ' h\n\n' +
-      '¿Lo tenés libre?';
+      '🕐 Horario: ' + sel.hora + ' h\n' +
+      (comentario ? '💬 Comentario: ' + comentario + '\n' : '') +
+      '\n¿Lo tenés libre?';
 
     window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   });
