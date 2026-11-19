@@ -15,7 +15,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="video/encabezado.webp" type="image/webp">
 <style>
 :root{
   --bg:#0c0b0a;
@@ -236,7 +235,7 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,7.2vw,3.2re
 .btn:hover::after,.btn:focus-visible::after{transform:translateX(120%)}
 .btn-gold{background:linear-gradient(100deg,#f7e0a6,#d6a84e 50%,#9c7029);box-shadow:none}
 .btn-gold:hover{box-shadow:none}
-.btn-ghost{background:rgba(214,168,78,.05);border:1px solid var(--edge-2);backdrop-filter:blur(6px)}
+.btn-ghost{background:rgba(214,168,78,.05);border:1px solid var(--edge-2)}
 .btn-ghost:hover{background:rgba(214,168,78,.14)}
 .top .btn{font-size:.72rem;min-height:40px}
 
@@ -245,11 +244,15 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,7.2vw,3.2re
 .hero h1 .word{display:block}
 .hero h1 .g{background:linear-gradient(100deg,#fff2cf,#e6bd66 35%,#b8862f 70%,#f0cd7f);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
-.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:42%;z-index:-1;pointer-events:none;opacity:.55;
-  background-image:linear-gradient(rgba(214,168,78,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(214,168,78,.5) 1px,transparent 1px);background-size:64px 64px;
+.hero{background:radial-gradient(46% 36% at 24% 34%,rgba(214,168,78,.22),transparent 70%),radial-gradient(80% 50% at 50% 100%,rgba(214,168,78,.10),transparent 70%)}
+.hero::after{background:linear-gradient(180deg,rgba(7,7,7,0) 60%,var(--bg) 100%)}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:46%;z-index:-1;pointer-events:none;opacity:.7;overflow:hidden;
   transform:perspective(380px) rotateX(64deg);transform-origin:50% 100%;
-  -webkit-mask-image:linear-gradient(to top,#000 0%,transparent 80%);mask-image:linear-gradient(to top,#000 0%,transparent 80%);animation:piso 2.4s linear infinite}
-@keyframes piso{to{background-position:0 64px}}
+  -webkit-mask-image:linear-gradient(to top,#000 0%,transparent 85%);mask-image:linear-gradient(to top,#000 0%,transparent 85%)}
+.floor::before{content:"";position:absolute;left:0;right:0;top:-64px;bottom:0;will-change:transform;
+  background-image:linear-gradient(rgba(214,168,78,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(214,168,78,.5) 1px,transparent 1px);background-size:64px 64px;
+  animation:piso 2.4s linear infinite}
+@keyframes piso{from{transform:translateY(0)}to{transform:translateY(64px)}}
 .hud{position:absolute;inset:max(84px,calc(env(safe-area-inset-top) + 76px)) 14px 14px;pointer-events:none;z-index:0}
 .hud i{position:absolute;width:22px;height:22px;border-color:var(--edge-2);border-style:solid;border-width:0}
 .hud i:nth-child(1){top:0;left:0;border-top-width:1.5px;border-left-width:1.5px}
@@ -259,9 +262,10 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,7.2vw,3.2re
 .hud .coord{position:absolute;top:8px;left:30px;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:rgba(243,237,227,.7)}
 .hud .coord b{color:var(--gold-2);font-weight:500}
 .hud .lugar{display:none}
+@media (max-width:999px){.hud .coord{display:none}}
 @media (min-width:720px){.hud .lugar{display:inline}}
 .eyebrow-hero{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
-  padding:7px 12px;border:1px solid var(--edge-2);background:rgba(7,7,7,.45);backdrop-filter:blur(6px);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+  padding:7px 12px;border:1px solid var(--edge-2);background:rgba(7,7,7,.6);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
 .eyebrow-hero::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
 .status{margin-top:18px;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#d8cfbf;display:flex;align-items:center;gap:10px}
 .status .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:latido 1.8s infinite}
@@ -328,14 +332,23 @@ footer h4{font-family:var(--mono);font-weight:500}
   .hero h1 .word{display:inline}
   .hud{inset:96px 28px 28px}
 }
-@media (prefers-reduced-motion:reduce){.floor,.service::before,.top.scrolled::after,.status .dot{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.floor::before,.service::before,.top.scrolled::after,.status .dot{animation:none!important}}
 
 /* Poste de barbería 3D */
-.poste{position:absolute;z-index:0;pointer-events:none;right:-2px;top:calc(env(safe-area-inset-top) + 104px);
+.poste{position:absolute;z-index:0;pointer-events:none;left:-2px;top:calc(env(safe-area-inset-top) + 74px);
   height:300px;aspect-ratio:10/22;opacity:0;transition:opacity 1.2s ease}
 .poste.listo{opacity:1}
 .poste canvas{width:100%!important;height:100%!important;display:block}
-@media (min-width:1000px){.poste{height:min(60vh,480px);right:2vw;top:max(90px,11vh)}}
+@media (min-width:1000px){
+  .poste{height:min(66vh,540px);left:4vw;top:50%;margin-top:calc(min(66vh,540px) / -2 + 20px)}
+  .hero .hero-content{max-width:none;padding-left:clamp(320px,32vw,480px);padding-bottom:max(70px,12vh)}
+  .hero{background:radial-gradient(30% 45% at 15% 50%,rgba(214,168,78,.22),transparent 70%),radial-gradient(80% 50% at 50% 100%,rgba(214,168,78,.10),transparent 70%)}
+}
+.specs{position:absolute;right:20px;top:calc(env(safe-area-inset-top) + 104px);display:grid;gap:18px;text-align:right;z-index:0}
+.specs small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,205,127,.7)}
+.specs b{display:block;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:-.01em;margin-top:2px}
+.specs div{padding-right:12px;border-right:1.5px solid var(--edge-2)}
+@media (min-width:1000px){.specs{display:none}}
 </style>
 </head>
 <body>
@@ -354,11 +367,9 @@ footer h4{font-family:var(--mono);font-weight:500}
 <main>
   <!-- Encabezado -->
   <section class="hero" id="inicio">
-    <div class="hero-img">
-      <video class="hero-media" muted loop playsinline preload="none" poster="video/encabezado.webp" data-src="video/encabezado.mp4" aria-hidden="true"></video>
-    </div>
     <div class="floor" aria-hidden="true"></div>
     <div class="poste" id="poste" aria-hidden="true"></div>
+    <div class="specs h-anim" aria-hidden="true"><div><small>Horario</small><b>10 — 22 h</b></div><div><small>Abierto</small><b>Lun a Dom</b></div><div><small>Corte</small><b>$10.000</b></div><div><small>Corte + barba</small><b>$12.000</b></div></div>
     <div class="hud" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="coord"><b>S</b> 28°28′ · <b>O</b> 65°47′<span class="lugar"> — CATAMARCA</span></span></div>
     <div class="wrap hero-content">
       <div class="eyebrow-hero h-anim">Barbería · Catamarca</div>
@@ -420,14 +431,15 @@ footer h4{font-family:var(--mono);font-weight:500}
       <div class="gallery" id="gallery">
         <button class="shot wide tall" type="button"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 1"></button>
         <button class="shot" type="button"><img src="img/corte-7-chica.webp" srcset="img/corte-7-chica.webp 480w, img/corte-7.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 2"></button>
-        <div class="shot clip tall"><video muted loop playsinline preload="none" poster="video/corte-b.webp" data-src="video/corte-b.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
+        <div class="shot clip"><video muted loop playsinline preload="none" poster="video/corte-b.webp" data-src="video/corte-b.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-2-chica.webp" srcset="img/corte-2-chica.webp 480w, img/corte-2.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 3"></button>
         <button class="shot" type="button"><img src="img/corte-3-chica.webp" srcset="img/corte-3-chica.webp 480w, img/corte-3.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 4"></button>
         <div class="shot clip"><video muted loop playsinline preload="none" poster="video/corte-a.webp" data-src="video/corte-a.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-4-chica.webp" srcset="img/corte-4-chica.webp 480w, img/corte-4.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 5"></button>
-        <div class="shot clip wide"><video muted loop playsinline preload="none" poster="video/corte-c.webp" data-src="video/corte-c.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
+        <div class="shot clip wide"><video muted loop playsinline preload="none" poster="video/encabezado.webp" data-src="video/encabezado.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-5-chica.webp" srcset="img/corte-5-chica.webp 480w, img/corte-5.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 6"></button>
         <button class="shot" type="button"><img src="img/corte-6-chica.webp" srcset="img/corte-6-chica.webp 480w, img/corte-6.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 7"></button>
+        <div class="shot clip wide"><video muted loop playsinline preload="none" poster="video/corte-c.webp" data-src="video/corte-c.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
       </div>
       <div class="gallery-cta reveal">
         <a class="btn btn-ghost" href="https://www.instagram.com/uriel_barber01" target="_blank" rel="noopener">
@@ -601,14 +613,9 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.registerPlugin(ScrollTrigger);
 
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.hero-media', { scale: 1.12, duration: 2.2, ease: 'power2.out' }, 0)
-      .from('.hero h1 .word', { yPercent: 110, duration: 1.1, stagger: .12 }, .15)
+    tl.from('.hero h1 .word', { yPercent: 110, duration: 1.1, stagger: .12 }, .15)
       .from('.h-anim', { y: 24, autoAlpha: 0, duration: .9, stagger: .12 }, .45);
 
-    gsap.to('.hero-media', {
-      yPercent: 12, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
 
     gsap.utils.toArray('.reveal').forEach(function (el) {
       gsap.from(el, { y: 30, autoAlpha: 0, duration: .9, ease: 'power3.out',
@@ -923,7 +930,7 @@ async function iniciar() {
   const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -947,8 +954,8 @@ async function iniciar() {
   void RoomEnvironment;
 
   const camera = new THREE.PerspectiveCamera(26, 10 / 22, 0.1, 100);
-  camera.position.set(0.25, 0.25, 12.4);
-  camera.lookAt(0.25, 0.22, 0);
+  camera.position.set(-0.25, 0.25, 12.4);
+  camera.lookAt(-0.25, 0.22, 0);
 
   // Textura de rayas en espiral (rojo, blanco, azul, blanco), sin cortes al dar la vuelta
   const W = 512, H = 512, N = 8;
@@ -974,19 +981,18 @@ async function iniciar() {
 
   // Cilindro interior con rayas (el que gira)
   const TUBE_H = 2.7;
-  const inner = new THREE.Mesh(new THREE.CylinderGeometry(0.43, 0.43, TUBE_H, 96, 1, true),
+  const inner = new THREE.Mesh(new THREE.CylinderGeometry(0.43, 0.43, TUBE_H, 64, 1, true),
     new THREE.MeshStandardMaterial({ map: stripes, roughness: 0.3, metalness: 0.0, envMapIntensity: 0.9 }));
   poste.add(inner);
 
   // Tubo de vidrio
-  const glass = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, TUBE_H, 96, 1, true),
-    new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0.03, transmission: 1, thickness: 0.06, ior: 1.45,
-      transparent: true, opacity: 1, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 1.4, side: THREE.DoubleSide }));
+  const glass = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, TUBE_H, 64, 1, true),
+    new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.2, roughness: 0.04, transparent: true, opacity: 0.16, envMapIntensity: 2.2, depthWrite: false }));
   poste.add(glass);
 
   // Tapas de cromo (perfil torneado)
   function lathe(points, y) {
-    const g = new THREE.LatheGeometry(points.map(p => new THREE.Vector2(p[0], p[1])), 96);
+    const g = new THREE.LatheGeometry(points.map(p => new THREE.Vector2(p[0], p[1])), 64);
     const m = new THREE.Mesh(g, chrome); m.position.y = y; return m;
   }
   const top = TUBE_H / 2, bot = -TUBE_H / 2;
@@ -1006,19 +1012,19 @@ async function iniciar() {
   gr.addColorStop(0, 'rgba(255,240,210,.85)'); gr.addColorStop(.35, 'rgba(255,220,160,.25)'); gr.addColorStop(1, 'rgba(255,200,120,0)');
   hx.fillStyle = gr; hx.fillRect(0, 0, 128, 128);
   const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(hc), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
-  halo.scale.set(2.4, 2.4, 1); halo.position.copy(globo.position); poste.add(halo);
+  void halo;
   const luz = new THREE.PointLight(0xffe6b8, 6, 6, 2); luz.position.copy(globo.position); poste.add(luz);
 
   // Soporte a la pared (hacia la derecha)
   const sop = new THREE.Group();
-  const placa = new THREE.Mesh(new THREE.BoxGeometry(0.1, TUBE_H + 0.9, 0.34), new THREE.MeshStandardMaterial({ color: 0xcfcfd2, metalness: 1, roughness: 0.32, envMapIntensity: 1.3 })); placa.position.set(1.18, -0.1, 0); sop.add(placa);
+  const placa = new THREE.Mesh(new THREE.BoxGeometry(0.1, TUBE_H + 0.9, 0.34), new THREE.MeshStandardMaterial({ color: 0xcfcfd2, metalness: 1, roughness: 0.32, envMapIntensity: 1.3 })); placa.position.set(-1.18, -0.1, 0); sop.add(placa);
   [top + 0.18, bot - 0.2].forEach(y => {
     const brazo = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.62, 24), chrome);
-    brazo.rotation.z = Math.PI / 2; brazo.position.set(0.86, y, 0); sop.add(brazo);
+    brazo.rotation.z = Math.PI / 2; brazo.position.set(-0.86, y, 0); sop.add(brazo);
   });
   poste.add(sop);
 
-  poste.rotation.y = -0.55;
+  poste.rotation.y = 0.55;
   poste.rotation.z = 0.0;
   scene.add(poste);
 
@@ -1028,9 +1034,9 @@ async function iniciar() {
 
   function size() {
     if (innerWidth < 1000) {
-      // en celular: ocupa desde arriba hasta los botones, sin tapar el nombre
-      const acc = document.querySelector('.hero-actions'), hero = box.parentElement;
-      const limite = acc.getBoundingClientRect().top - hero.getBoundingClientRect().top - box.offsetTop - 14;
+      // en celular: ocupa desde arriba hasta el texto, sin taparlo
+      const tope = document.querySelector('.eyebrow-hero'), hero = box.parentElement;
+      const limite = tope.getBoundingClientRect().top - hero.getBoundingClientRect().top - box.offsetTop - 10;
       box.style.height = Math.max(0, Math.min(limite, 440)) + 'px';
     } else box.style.height = '';
     const w = box.clientWidth, h = box.clientHeight; if (!w || !h) return;
@@ -1042,24 +1048,30 @@ async function iniciar() {
   let tx = 0, ty = 0;
   window.addEventListener('pointermove', e => { tx = (e.clientX / innerWidth - .5) * .5; ty = (e.clientY / innerHeight - .5) * .2; }, { passive: true });
 
-  let visible = true, last = performance.now(), t = 0;
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) { last = performance.now(); requestAnimationFrame(loop); } }).observe(box);
+  let visible = true, running = false, last = performance.now(), t = 0;
+  const minFrame = innerWidth < 1000 ? 1000 / 32 : 0;   // en celular ~30 cuadros por segundo alcanzan
+  function arrancar() { if (running || reduce) return; running = true; last = performance.now(); requestAnimationFrame(loop); }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) arrancar(); }).observe(box);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && visible) arrancar(); });
   function loop(now) {
-    if (!visible) return;
+    if (!visible || document.hidden) { running = false; return; }
+    if (now - last < minFrame) { requestAnimationFrame(loop); return; }
     const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
     inner.rotation.y -= dt * 1.6;                       // giran las rayas
-    poste.rotation.y += ((-0.55 + tx) - poste.rotation.y) * 0.05;
+    poste.rotation.y += ((0.55 + tx) - poste.rotation.y) * 0.05;
     poste.rotation.x += (ty - poste.rotation.x) * 0.05;
     poste.position.y = Math.sin(t * 0.8) * 0.04;
     globo.material.emissiveIntensity = 0.5 + Math.sin(t * 2.2) * 0.04;
     renderer.render(scene, camera);
-    if (!reduce) requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
   }
   renderer.render(scene, camera);
   box.classList.add('listo');
-  if (!reduce) requestAnimationFrame(loop);
+  arrancar();
 }
-if (document.readyState === 'complete') iniciar(); else window.addEventListener('load', iniciar);
+// arranca cuando la página ya cargó y el celular está libre, para no trabar la entrada
+function cuandoLibre() { (window.requestIdleCallback || (f => setTimeout(f, 300)))(() => setTimeout(iniciar, 600), { timeout: 2500 }); }
+if (document.readyState === 'complete') cuandoLibre(); else window.addEventListener('load', cuandoLibre);
 </script>
 </body>
 </html>
