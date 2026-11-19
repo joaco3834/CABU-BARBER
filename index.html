@@ -534,8 +534,10 @@ document.addEventListener('DOMContentLoaded', function () {
   dia.max = isoDate(max);
   dia.value = isoDate(today);
 
-  /* Horarios de comida: no se dan turnos (13:00 a 14:30) */
-  var DESCANSO = ['13:00', '13:30', '14:00', '14:30'];
+  /* Turnos cada 20 minutos, de 10:00 a 21:40 */
+  var PASO = 20;
+  /* Horario de comida: no se dan turnos de 13 a 15 h */
+  var DESCANSO_DESDE = 13 * 60, DESCANSO_HASTA = 15 * 60;
 
   /* Planilla de Google con los horarios ocupados (publicada como CSV).
      Pegá acá el link de "Publicar en la web". Si está vacío, no se bloquea nada. */
@@ -581,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return y + '-' + pad(mo) + '-' + pad(d);
   }
 
-  /* Acepta 10, 10:00, 10.30, 10:30 hs, 10:30:00, 2 (= 14 h) o "todo" */
+  /* Acepta 10, 10:00, 10.20, 10:40 hs, 10:20:00, 2 (= 14 h) o "todo" */
   function leerHora(txt) {
     txt = (txt || '').trim().toLowerCase();
     if (!txt || /todo|cerrado|completo/.test(txt)) return 'todo';
@@ -590,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var h = +m[1], mi = m[2] ? +m[2] : 0;
     if (h >= 1 && h <= 9) h += 12; // "2" = 14 h (no abre antes de las 10)
     if (/pm/.test(txt) && h < 12) h += 12;
-    mi = mi < 30 ? 0 : 30;
+    mi = Math.floor(mi / PASO) * PASO;
     return pad(h) + ':' + pad(mi);
   }
 
@@ -626,10 +628,10 @@ document.addEventListener('DOMContentLoaded', function () {
     hora.appendChild(ph);
     var libres = 0;
     if (!tomados.todo) {
-      for (var m = 10 * 60; m <= 21 * 60 + 30; m += 30) {
+      for (var m = 10 * 60; m < 22 * 60; m += PASO) {
         if (m < minMinutes) continue;
         var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
-        if (DESCANSO.indexOf(t) > -1) continue;
+        if (m >= DESCANSO_DESDE && m < DESCANSO_HASTA) continue;
         var o = document.createElement('option');
         o.value = t;
         if (tomados[t]) { o.disabled = true; o.textContent = t + ' h — ocupado'; }
