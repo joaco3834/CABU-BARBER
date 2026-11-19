@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cabubarber · Barbería en Catamarca</title>
+<meta name="description" content="Cabubarber: fades, degradados y diseños en San Fernando del Valle de Catamarca. Corte $10.000 · Corte + barba $12.000. Abierto todos los días de 10 a 22 h. Pedí tu turno por WhatsApp.">
+<meta name="theme-color" content="#0c0b0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cabubarber · Barbería en Catamarca">
+<meta property="og:description" content="Fades, degradados y diseños. Todos los días de 10 a 22 h. Pedí tu turno por WhatsApp.">
+<meta property="og:image" content="img/corte-1.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0b0a'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' fill='%23d6a84e'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/corte-1.webp" type="image/webp">
+<style>
+:root{
+  --bg:#0c0b0a;
+  --bg-2:#141210;
+  --card:#1a1714;
+  --line:#2c2620;
+  --text:#f3ede3;
+  --muted:#a89d8d;
+  --gold:#d6a84e;
+  --gold-2:#f0cd7f;
+  --gold-dark:#8a6a2c;
+  --wa:#25d366;
+  --radius:18px;
+  --pad:20px;
+  --display:"Bebas Neue",Impact,"Arial Narrow",sans-serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 var(--pad)}
+.gold{color:var(--gold)}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,9vw,4.4rem);line-height:.95;letter-spacing:.01em;margin:.35em 0 .3em}
+.lead{color:var(--muted);max-width:52ch}
+section{padding:84px 0;position:relative}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:0;cursor:pointer;font-weight:700;font-size:1rem;text-decoration:none;letter-spacing:.01em;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,var(--gold-dark));color:#1a1206;box-shadow:0 10px 30px -10px rgba(214,168,78,.7)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(214,168,78,.85)}
+.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:var(--text);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Barra superior */
+.top{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);padding-top:max(14px,env(safe-area-inset-top));transition:background .3s ease,border-color .3s ease;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(12,11,10,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.logo{font-family:var(--display);font-size:1.7rem;letter-spacing:.06em;text-decoration:none;line-height:1}
+.logo span{color:var(--gold)}
+.top nav{display:none;gap:26px;font-size:.92rem}
+.top nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+.top nav a:hover{color:var(--text)}
+.top .btn{min-height:42px;padding:0 18px;font-size:.9rem}
+
+/* Hero */
+.hero{min-height:100svh;padding:0;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero-img{position:absolute;inset:0;z-index:-2}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:50% 40%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(12,11,10,.55) 0%,rgba(12,11,10,.1) 28%,rgba(12,11,10,.55) 58%,var(--bg) 96%),
+  radial-gradient(120% 70% at 50% 100%,rgba(12,11,10,.85),transparent 70%)}
+.hero-content{padding-bottom:max(56px,calc(env(safe-area-inset-bottom) + 40px));padding-top:120px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(4.4rem,22vw,10rem);line-height:.82;letter-spacing:.015em;margin:14px 0 14px;overflow:hidden}
+.hero h1 .word{display:inline-block}
+.hero h1 .g{background:linear-gradient(180deg,var(--gold-2),var(--gold) 60%,var(--gold-dark));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.08rem;color:#d9d0c2;max-width:34ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-actions .btn{flex:1 1 200px}
+
+/* Franja */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2);padding:0}
+.strip ul{list-style:none;display:grid;grid-template-columns:1fr;gap:0}
+.strip li{display:flex;align-items:center;gap:12px;padding:16px 0;font-size:.95rem;color:#ddd3c4}
+.strip li+li{border-top:1px solid var(--line)}
+.strip svg{width:20px;height:20px;color:var(--gold);flex:none}
+
+/* Servicios */
+.services{display:grid;gap:16px;margin-top:34px}
+.service{position:relative;background:linear-gradient(160deg,#201c17,var(--card) 60%);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px 22px;overflow:hidden}
+.service::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:repeating-linear-gradient(-45deg,var(--gold) 0 10px,transparent 10px 20px);opacity:.75}
+.service .tag{position:absolute;top:22px;right:20px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#1a1206;background:var(--gold);padding:5px 10px;border-radius:999px;font-weight:700}
+.service h3{font-family:var(--display);font-weight:400;font-size:2.2rem;letter-spacing:.02em;line-height:1}
+.service p{color:var(--muted);margin:8px 0 18px;font-size:.96rem}
+.service .row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.price{font-family:var(--display);font-size:2.9rem;line-height:1;color:var(--gold-2);letter-spacing:.02em}
+.service .btn{min-height:46px;padding:0 20px;font-size:.92rem}
+
+/* Galería */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:34px}
+.shot{position:relative;border-radius:14px;overflow:hidden;background:var(--card);aspect-ratio:3/4;border:0;padding:0;cursor:zoom-in}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s}
+.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65));pointer-events:none}
+.shot span{position:absolute;left:12px;bottom:10px;z-index:1;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-2)}
+.shot:hover img{transform:scale(1.05)}
+.gallery-cta{margin-top:22px;display:flex;justify-content:center}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(6,5,4,.94);display:none;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-height:86svh;width:auto;max-width:100%;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(20,18,16,.8);color:var(--text);cursor:pointer;display:grid;place-items:center;font-size:1.4rem;line-height:1}
+.lb-close{top:max(16px,env(safe-area-inset-top));right:16px}
+.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+
+/* Turno */
+.booking{background:radial-gradient(90% 60% at 100% 0%,rgba(214,168,78,.12),transparent 70%),var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.form{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:18px}
+.field{display:grid;gap:8px}
+.field label,.field legend{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.input{width:100%;min-height:54px;background:#0f0e0c;border:1px solid #3a3229;border-radius:14px;padding:0 16px;font-size:16px;color:var(--text);transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+.input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(214,168,78,.2)}
+select.input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d6a84e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+input[type=date].input{color-scheme:dark;display:flex;align-items:center}
+fieldset{border:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label{display:flex;flex-direction:column;gap:2px;padding:14px;border-radius:14px;border:1px solid #3a3229;background:#0f0e0c;cursor:pointer;transition:border-color .2s,background .2s;text-transform:none;letter-spacing:0;color:var(--text);font-size:.98rem;font-weight:500;min-height:72px;justify-content:center}
+.choice label b{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1;color:var(--gold-2);letter-spacing:.02em}
+.choice input:checked+label{border-color:var(--gold);background:rgba(214,168,78,.1);box-shadow:inset 0 0 0 1px var(--gold)}
+.choice input:focus-visible+label{outline:2px solid var(--gold-2);outline-offset:3px}
+.two{display:grid;gap:18px}
+.hint{font-size:.85rem;color:var(--muted)}
+.error{color:#ff9b8a;font-size:.9rem;min-height:1.2em}
+.form .btn{width:100%;background:var(--wa);color:#05210f;box-shadow:0 10px 30px -12px rgba(37,211,102,.7)}
+.form .btn:hover{transform:translateY(-2px)}
+
+/* Opiniones */
+.reviews-empty{margin-top:30px;border:1px dashed #3d342a;border-radius:22px;padding:40px 22px;text-align:center;background:linear-gradient(180deg,rgba(214,168,78,.05),transparent)}
+.stars{display:flex;justify-content:center;gap:6px;margin-bottom:14px;color:var(--gold)}
+.stars svg{width:22px;height:22px;opacity:.35}
+.reviews-empty p{font-family:var(--display);font-size:clamp(1.9rem,7vw,2.6rem);line-height:1;letter-spacing:.02em}
+.reviews-empty small{display:block;color:var(--muted);margin-top:10px;font-size:.95rem}
+
+/* Pie */
+footer{background:#080706;border-top:1px solid var(--line);padding:60px 0 calc(110px + env(safe-area-inset-bottom))}
+.foot-grid{display:grid;gap:28px}
+.foot-brand .logo{font-size:2.6rem}
+.foot-brand p{color:var(--muted);margin-top:8px;max-width:34ch}
+footer h4{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:12px}
+footer li a,footer li span{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e4dacb}
+footer li a:hover{color:var(--gold-2)}
+footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
+.copy{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:#6f665a;font-size:.85rem}
+
+/* WhatsApp flotante */
+.wa-float{position:fixed;right:18px;bottom:max(18px,env(safe-area-inset-bottom));z-index:50;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px -6px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.4);transition:transform .2s ease}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:32px;height:32px;color:#fff}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:ping 2.6s ease-out infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.55);opacity:0}}
+
+/* Desktop */
+@media (min-width:720px){
+  :root{--pad:32px}
+  section{padding:110px 0}
+  .top nav{display:flex}
+  .strip ul{grid-template-columns:repeat(3,1fr)}
+  .strip li+li{border-top:0;border-left:1px solid var(--line);padding-left:22px}
+  .services{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:repeat(3,1fr);gap:14px}
+  .gallery .shot:first-child{grid-row:span 2;aspect-ratio:auto}
+  .form{padding:32px}
+  .two{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
+  .hero-actions .btn{flex:0 0 auto}
+}
+@media (min-width:1000px){
+  .booking .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start}
+  .booking .form{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <a class="logo" href="#inicio" aria-label="Cabubarber, ir al inicio">CABU<span>BARBER</span></a>
+  <nav aria-label="Secciones">
+    <a href="#servicios">Servicios</a>
+    <a href="#cortes">Cortes</a>
+    <a href="#turno">Turnos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="btn btn-gold" href="#turno">Pedí tu turno</a>
+</header>
+
+<main>
+  <!-- Encabezado -->
+  <section class="hero" id="inicio">
+    <div class="hero-img">
+      <img src="img/corte-1.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="100vw" width="900" height="1200" alt="Degradado bajo con mucho volumen arriba, hecho en Cabubarber" fetchpriority="high">
+    </div>
+    <div class="wrap hero-content">
+      <div class="eyebrow h-anim">Barbería · Catamarca</div>
+      <h1><span class="word">Cabu</span><span class="word g">barber</span></h1>
+      <p class="h-anim">Fades bien prolijos, diseños a navaja y cortes con onda. Te atendemos todos los días, de 10 a 22&nbsp;h.</p>
+      <div class="hero-actions h-anim">
+        <a class="btn btn-gold" href="#turno">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Pedí tu turno
+        </a>
+        <a class="btn btn-ghost" href="#cortes">Mirá los cortes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Franja -->
+  <section class="strip" aria-label="Datos rápidos">
+    <div class="wrap">
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Lunes a domingo · 10 a 22 h</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>San Fernando del Valle de Catamarca</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12Z"/></svg>Turnos por WhatsApp</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="eyebrow reveal">Servicios</div>
+      <h2 class="reveal">Precios <span class="gold">claros</span></h2>
+      <p class="lead reveal">Elegí lo que querés y reservá en un toque.</p>
+      <div class="services">
+        <article class="service reveal-card">
+          <h3>Corte</h3>
+          <p>Fade, degradado, taper o el corte que traigas en mente. Con terminación prolija y diseño si querés.</p>
+          <div class="row">
+            <span class="price">$10.000</span>
+            <a class="btn btn-gold" href="#turno" data-service="Corte">Reservar</a>
+          </div>
+        </article>
+        <article class="service reveal-card">
+          <span class="tag">Completo</span>
+          <h3>Corte + barba</h3>
+          <p>El corte más el arreglo de barba: perfilado, rebaje y contornos bien marcados.</p>
+          <div class="row">
+            <span class="price">$12.000</span>
+            <a class="btn btn-gold" href="#turno" data-service="Corte + barba">Reservar</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section id="cortes" style="padding-top:20px">
+    <div class="wrap">
+      <div class="eyebrow reveal">Trabajos</div>
+      <h2 class="reveal">Cortes de <span class="gold">la casa</span></h2>
+      <p class="lead reveal">Algunos de los cortes que salieron de la silla. Tocá una foto para verla grande.</p>
+      <div class="gallery" id="gallery">
+        <button class="shot" type="button" data-i="0"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado bajo con volumen texturizado arriba"><span>Low fade</span></button>
+        <button class="shot" type="button" data-i="1"><img src="img/corte-2-chica.webp" srcset="img/corte-2-chica.webp 480w, img/corte-2.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con flequillo texturizado, vista de costado"><span>Taper</span></button>
+        <button class="shot" type="button" data-i="2"><img src="img/corte-3-chica.webp" srcset="img/corte-3-chica.webp 480w, img/corte-3.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con el pelo de arriba peinado hacia atrás"><span>Fade clásico</span></button>
+        <button class="shot" type="button" data-i="3"><img src="img/corte-4-chica.webp" srcset="img/corte-4-chica.webp 480w, img/corte-4.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con diseño de líneas a navaja en el costado"><span>Diseño</span></button>
+        <button class="shot" type="button" data-i="4"><img src="img/corte-5-chica.webp" srcset="img/corte-5-chica.webp 480w, img/corte-5.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con diseño de estrella en el costado"><span>Fade + estrella</span></button>
+        <button class="shot" type="button" data-i="5"><img src="img/corte-6-chica.webp" srcset="img/corte-6-chica.webp 480w, img/corte-6.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte con volumen arriba y diseño de estrella sobre la oreja"><span>Diseño estrella</span></button>
+      </div>
+      <div class="gallery-cta reveal">
+        <a class="btn btn-ghost" href="https://www.instagram.com/uriel_barber01" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+          Más cortes en @uriel_barber01
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Turno -->
+  <section class="booking" id="turno">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow reveal">Turnos</div>
+        <h2 class="reveal">Pedí tu <span class="gold">turno</span></h2>
+        <p class="lead reveal">Completá esto y se te abre WhatsApp con el mensaje listo. Solo tenés que mandarlo y te confirmamos el horario.</p>
+      </div>
+      <form class="form reveal" id="bookingForm" novalidate>
+        <div class="field">
+          <label for="nombre">Tu nombre</label>
+          <input class="input" id="nombre" name="nombre" type="text" autocomplete="given-name" placeholder="Ej: Juan" maxlength="40" required>
+        </div>
+        <fieldset class="field">
+          <legend>Servicio</legend>
+          <div class="choices">
+            <div class="choice">
+              <input type="radio" name="servicio" id="s-corte" value="Corte" data-price="$10.000" checked>
+              <label for="s-corte">Corte <b>$10.000</b></label>
+            </div>
+            <div class="choice">
+              <input type="radio" name="servicio" id="s-barba" value="Corte + barba" data-price="$12.000">
+              <label for="s-barba">Corte + barba <b>$12.000</b></label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="two">
+          <div class="field">
+            <label for="dia">Día</label>
+            <input class="input" id="dia" name="dia" type="date" required>
+          </div>
+          <div class="field">
+            <label for="hora">Horario</label>
+            <select class="input" id="hora" name="hora" required></select>
+          </div>
+        </div>
+        <p class="hint">Atendemos todos los días, de 10 a 22 h.</p>
+        <p class="error" id="formError" role="alert"></p>
+        <button class="btn" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 17.9L.2 24l6.3-1.7A11.8 11.8 0 1 0 12 .2Z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Opiniones -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="eyebrow reveal">Opiniones</div>
+      <h2 class="reveal">Lo que dicen <span class="gold">los clientes</span></h2>
+      <div class="reviews-empty reveal">
+        <div class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6Z"/></svg>
+        </div>
+        <p>Próximamente opiniones de clientes</p>
+        <small>¿Ya te cortaste con nosotros? Contanos qué te pareció por WhatsApp.</small>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Pie -->
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#inicio">CABU<span>BARBER</span></a>
+        <p>Barbería en San Fernando del Valle de Catamarca. Fades, diseños y barba.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/5493834608250?text=Hola%20Uriel!%20Quiero%20sacar%20un%20turno%20en%20Cabubarber." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12Z"/></svg>
+            +54 9 383 460-8250</a></li>
+          <li><a href="https://www.instagram.com/uriel_barber01" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+            @uriel_barber01</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dónde y cuándo</h4>
+        <ul>
+          <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>San Fernando del Valle de Catamarca</span></li>
+          <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Lunes a domingo, de 10 a 22 h</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© <span id="year">2026</span> Cabubarber · Catamarca</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5493834608250?text=Hola%20Uriel!%20Quiero%20sacar%20un%20turno%20en%20Cabubarber." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4ZM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm0-21.6A11.8 11.8 0 0 0 1.9 17.9L.2 24l6.3-1.7A11.8 11.8 0 1 0 12 .2Z"/></svg>
+</a>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto del corte">
+  <button class="lb-btn lb-close" type="button" aria-label="Cerrar">✕</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Foto anterior">‹</button>
+  <img alt="">
+  <button class="lb-btn lb-next" type="button" aria-label="Foto siguiente">›</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var WA = '5493834608250';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var topBar = document.getElementById('top');
+  var lenis = null;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Barra superior ---------- */
+  function onScroll(y) { topBar.classList.toggle('scrolled', y > 40); }
+  window.addEventListener('scroll', function () { onScroll(window.scrollY); }, { passive: true });
+  onScroll(window.scrollY);
+
+  /* ---------- Lenis + GSAP ---------- */
+  if (!reduceMotion && window.Lenis) {
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    if (window.gsap && window.ScrollTrigger) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+    }
+  }
+
+  function scrollToId(id) {
+    var el = document.querySelector(id);
+    if (!el) return;
+    var offset = id === '#inicio' ? 0 : -70;
+    if (lenis) lenis.scrollTo(el, { offset: offset });
+    else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      e.preventDefault();
+      var svc = a.getAttribute('data-service');
+      if (svc) {
+        var r = document.querySelector('input[name="servicio"][value="' + svc + '"]');
+        if (r) r.checked = true;
+      }
+      scrollToId(id);
+    });
+  });
+
+  if (!reduceMotion && window.gsap) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.from('.hero-img img', { scale: 1.12, duration: 2.2, ease: 'power2.out' }, 0)
+      .from('.hero h1 .word', { yPercent: 110, duration: 1.1, stagger: .12 }, .15)
+      .from('.h-anim', { y: 24, autoAlpha: 0, duration: .9, stagger: .12 }, .45);
+
+    gsap.to('.hero-img img', {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    gsap.utils.toArray('.reveal').forEach(function (el) {
+      gsap.from(el, { y: 30, autoAlpha: 0, duration: .9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+
+    gsap.from('.reveal-card', { y: 40, autoAlpha: 0, duration: .9, stagger: .15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.services', start: 'top 85%', once: true } });
+
+    gsap.from('.shot', { y: 40, autoAlpha: 0, scale: .96, duration: .9, stagger: .08, ease: 'power3.out',
+      scrollTrigger: { trigger: '#gallery', start: 'top 85%', once: true } });
+
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+  }
+
+  /* ---------- Galería / visor ---------- */
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  var current = 0, lastFocus = null;
+
+  function show(i) {
+    current = (i + shots.length) % shots.length;
+    var img = shots[current].querySelector('img');
+    lbImg.src = 'img/corte-' + (current + 1) + '.webp';
+    lbImg.alt = img.alt;
+  }
+  function openLb(i) {
+    lastFocus = document.activeElement;
+    show(i);
+    lb.classList.add('open');
+    if (lenis) lenis.stop();
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.lb-close').focus();
+    if (window.gsap && !reduceMotion) gsap.fromTo(lbImg, { scale: .94, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: 'power2.out' });
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    if (lenis) lenis.start();
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  shots.forEach(function (s, i) { s.addEventListener('click', function () { openLb(i); }); });
+  lb.querySelector('.lb-close').addEventListener('click', closeLb);
+  lb.querySelector('.lb-prev').addEventListener('click', function () { show(current - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { show(current + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  var touchX = null;
+  lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+
+  /* ---------- Formulario de turno ---------- */
+  var form = document.getElementById('bookingForm');
+  var dia = document.getElementById('dia');
+  var hora = document.getElementById('hora');
+  var err = document.getElementById('formError');
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function isoDate(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+
+  var today = new Date();
+  dia.min = isoDate(today);
+  var max = new Date(); max.setDate(max.getDate() + 60);
+  dia.max = isoDate(max);
+  dia.value = isoDate(today);
+
+  function fillHours() {
+    var prev = hora.value;
+    var now = new Date();
+    var isToday = dia.value === isoDate(now);
+    var minMinutes = isToday ? now.getHours() * 60 + now.getMinutes() + 30 : 0;
+    hora.innerHTML = '';
+    var ph = document.createElement('option');
+    ph.value = ''; ph.textContent = 'Elegí un horario';
+    hora.appendChild(ph);
+    var count = 0;
+    for (var m = 10 * 60; m <= 21 * 60 + 30; m += 30) {
+      if (m < minMinutes) continue;
+      var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
+      var o = document.createElement('option');
+      o.value = t; o.textContent = t + ' h';
+      hora.appendChild(o);
+      count++;
+    }
+    if (!count) ph.textContent = 'Hoy ya no quedan horarios, elegí otro día';
+    if (prev && hora.querySelector('option[value="' + prev + '"]')) hora.value = prev;
+  }
+  fillHours();
+  dia.addEventListener('change', function () { fillHours(); err.textContent = ''; });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    var nombre = form.nombre.value.trim();
+    var svc = form.querySelector('input[name="servicio"]:checked');
+    if (!nombre) { err.textContent = 'Poné tu nombre así sabemos quién sos.'; form.nombre.focus(); return; }
+    if (!dia.value) { err.textContent = 'Elegí el día.'; dia.focus(); return; }
+    if (dia.value < dia.min) { err.textContent = 'Ese día ya pasó, elegí otro.'; dia.focus(); return; }
+    if (!hora.value) { err.textContent = 'Elegí un horario.'; hora.focus(); return; }
+
+    var p = dia.value.split('-');
+    var fecha = new Date(+p[0], +p[1] - 1, +p[2]);
+    var diaTxt = fecha.toLocaleDateString('es-AR', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    var msg = 'Hola Uriel! Soy ' + nombre + ' y quiero sacar un turno en Cabubarber.\n\n' +
+      '✂️ Servicio: ' + svc.value + ' (' + svc.getAttribute('data-price') + ')\n' +
+      '📅 Día: ' + diaTxt + '\n' +
+      '🕐 Horario: ' + hora.value + ' h\n\n' +
+      '¿Lo tenés libre?';
+
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+});
+</script>
+</body>
+</html>
