@@ -369,7 +369,7 @@ footer h4{font-family:var(--mono);font-weight:500}
   <section class="hero" id="inicio">
     <div class="floor" aria-hidden="true"></div>
     <div class="poste" id="poste" aria-hidden="true"></div>
-    <div class="specs h-anim" aria-hidden="true"><div><small>Horario</small><b>10 — 22 h</b></div><div><small>Abierto</small><b>Lun a Dom</b></div><div><small>Corte</small><b>$10.000</b></div><div><small>Corte + barba</small><b>$12.000</b></div></div>
+    <div class="specs h-anim" aria-hidden="true"><div><small>Todos los días</small><b>10 — 22 h</b></div><div><small>Corte</small><b>$10.000</b></div><div><small>Corte + barba</small><b>$12.000</b></div></div>
     <div class="hud" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="coord"><b>S</b> 28°28′ · <b>O</b> 65°47′<span class="lugar"> — CATAMARCA</span></span></div>
     <div class="wrap hero-content">
       <div class="eyebrow-hero h-anim">Barbería · Catamarca</div>
@@ -664,6 +664,23 @@ document.addEventListener('DOMContentLoaded', function () {
       est.querySelector('.txt').textContent = abierto ? 'Abierto ahora · hasta las 22 h' : 'Cerrado · abrimos a las 10 h';
     }
     try { estado(); setInterval(estado, 60000); } catch (e) {}
+
+    // Datos de la derecha (celular): si alguno no entra arriba de "Barbería · Catamarca", se oculta en vez de pisarlo
+    var specs = document.querySelector('.specs'), tope = document.querySelector('.eyebrow-hero');
+    function acomodar() {
+      if (!specs || !tope) return;
+      var items = specs.children, i;
+      for (i = 0; i < items.length; i++) items[i].style.display = '';
+      if (getComputedStyle(specs).display === 'none') return;
+      var limite = tope.getBoundingClientRect().top - 12;
+      for (i = items.length - 1; i >= 0; i--) {
+        if (items[i].getBoundingClientRect().bottom > limite) items[i].style.display = 'none';
+      }
+    }
+    acomodar();
+    window.addEventListener('resize', acomodar);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(acomodar);
+    window.addEventListener('load', acomodar);
 
     var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&/<>';
     function scramble(el, dur) {
