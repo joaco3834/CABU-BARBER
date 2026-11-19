@@ -102,6 +102,7 @@ section{padding:84px 0;position:relative}
 
 /* Galería */
 .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:34px}
+.gallery .shot:first-child{grid-column:span 2;aspect-ratio:4/5}
 .shot{position:relative;border-radius:14px;overflow:hidden;background:var(--card);aspect-ratio:3/4;border:0;padding:0;cursor:zoom-in}
 .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s}
 .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.65));pointer-events:none}
@@ -176,7 +177,8 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
   .strip li+li{border-top:0;border-left:1px solid var(--line);padding-left:22px}
   .services{grid-template-columns:1fr 1fr}
   .gallery{grid-template-columns:repeat(3,1fr);gap:14px}
-  .gallery .shot:first-child{grid-row:span 2;aspect-ratio:auto}
+  .gallery .shot:first-child{grid-column:auto;aspect-ratio:auto}
+  .gallery .shot:first-child,.gallery .shot:nth-child(3){grid-row:span 2;aspect-ratio:auto}
   .form{padding:32px}
   .two{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
@@ -267,12 +269,13 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
       <h2 class="reveal">Cortes de <span class="gold">la casa</span></h2>
       <p class="lead reveal">Algunos de los cortes que salieron de la silla. Tocá una foto para verla grande.</p>
       <div class="gallery" id="gallery">
-        <button class="shot" type="button" data-i="0"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado bajo con volumen texturizado arriba"><span>Low fade</span></button>
-        <button class="shot" type="button" data-i="1"><img src="img/corte-2-chica.webp" srcset="img/corte-2-chica.webp 480w, img/corte-2.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con flequillo texturizado, vista de costado"><span>Taper</span></button>
-        <button class="shot" type="button" data-i="2"><img src="img/corte-3-chica.webp" srcset="img/corte-3-chica.webp 480w, img/corte-3.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con el pelo de arriba peinado hacia atrás"><span>Fade clásico</span></button>
-        <button class="shot" type="button" data-i="3"><img src="img/corte-4-chica.webp" srcset="img/corte-4-chica.webp 480w, img/corte-4.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con diseño de líneas a navaja en el costado"><span>Diseño</span></button>
-        <button class="shot" type="button" data-i="4"><img src="img/corte-5-chica.webp" srcset="img/corte-5-chica.webp 480w, img/corte-5.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con diseño de estrella en el costado"><span>Fade + estrella</span></button>
-        <button class="shot" type="button" data-i="5"><img src="img/corte-6-chica.webp" srcset="img/corte-6-chica.webp 480w, img/corte-6.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte con volumen arriba y diseño de estrella sobre la oreja"><span>Diseño estrella</span></button>
+        <button class="shot" type="button"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado bajo con volumen texturizado arriba"><span>Low fade</span></button>
+        <button class="shot" type="button"><img src="img/corte-7-chica.webp" srcset="img/corte-7-chica.webp 480w, img/corte-7.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con la nuca larga y textura arriba"><span>Taper con nuca</span></button>
+        <button class="shot" type="button"><img src="img/corte-2-chica.webp" srcset="img/corte-2-chica.webp 480w, img/corte-2.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con flequillo texturizado, vista de costado"><span>Taper</span></button>
+        <button class="shot" type="button"><img src="img/corte-3-chica.webp" srcset="img/corte-3-chica.webp 480w, img/corte-3.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con el pelo de arriba peinado hacia atrás"><span>Fade clásico</span></button>
+        <button class="shot" type="button"><img src="img/corte-4-chica.webp" srcset="img/corte-4-chica.webp 480w, img/corte-4.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Degradado con diseño de líneas a navaja en el costado"><span>Diseño</span></button>
+        <button class="shot" type="button"><img src="img/corte-5-chica.webp" srcset="img/corte-5-chica.webp 480w, img/corte-5.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Taper fade con diseño de estrella en el costado"><span>Fade + estrella</span></button>
+        <button class="shot" type="button"><img src="img/corte-6-chica.webp" srcset="img/corte-6-chica.webp 480w, img/corte-6.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte con volumen arriba y diseño de estrella sobre la oreja"><span>Diseño estrella</span></button>
       </div>
       <div class="gallery-cta reveal">
         <a class="btn btn-ghost" href="https://www.instagram.com/uriel_barber01" target="_blank" rel="noopener">
@@ -478,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function show(i) {
     current = (i + shots.length) % shots.length;
     var img = shots[current].querySelector('img');
-    lbImg.src = 'img/corte-' + (current + 1) + '.webp';
+    lbImg.src = img.getAttribute('srcset').split(',').pop().trim().split(' ')[0];
     lbImg.alt = img.alt;
   }
   function openLb(i) {
