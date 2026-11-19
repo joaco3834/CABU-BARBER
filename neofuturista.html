@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0b0a'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' fill='%23d6a84e'%3EC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="video/encabezado.webp" type="image/webp">
 <style>
 :root{
@@ -195,101 +195,141 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 
-/* ================= LIQUID GLASS ================= */
+/* ================= NEOFUTURISTA ================= */
 :root{
-  --glass:rgba(255,255,255,.07);
-  --glass-strong:rgba(255,255,255,.11);
-  --glass-edge:rgba(255,255,255,.22);
-  --glass-shadow:0 12px 40px -12px rgba(0,0,0,.6);
-  --glass-inner:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.06),inset 0 0 22px rgba(255,255,255,.04);
+  --display:"Unbounded","Arial Black",sans-serif;
+  --sans:"Space Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --cut:16px;
+  --edge:rgba(214,168,78,.32);
+  --edge-2:rgba(214,168,78,.6);
 }
-body{background:#090807}
-/* Fondo líquido: manchas doradas que se mueven detrás del vidrio */
-.liquid-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(120% 80% at 50% 0%,#15110c,#090807 70%)}
-.liquid-bg i{position:absolute;display:block;filter:blur(60px);opacity:.55;mix-blend-mode:screen;animation:blob 22s ease-in-out infinite alternate}
-.liquid-bg i:nth-child(1){width:60vmax;height:60vmax;left:-20vmax;top:-10vmax;background:radial-gradient(circle,#b8862f,transparent 65%)}
-.liquid-bg i:nth-child(2){width:50vmax;height:50vmax;right:-18vmax;top:30vh;background:radial-gradient(circle,#7a5320,transparent 65%);animation-duration:28s;animation-delay:-8s}
-.liquid-bg i:nth-child(3){width:45vmax;height:45vmax;left:10vw;bottom:-20vmax;background:radial-gradient(circle,#f0cd7f55,transparent 65%);animation-duration:34s;animation-delay:-14s}
-@keyframes blob{
-  0%{transform:translate(0,0) scale(1);border-radius:42% 58% 63% 37%/45% 40% 60% 55%}
-  50%{transform:translate(8vw,6vh) scale(1.15);border-radius:60% 40% 35% 65%/55% 62% 38% 45%}
-  100%{transform:translate(-6vw,10vh) scale(.92);border-radius:38% 62% 55% 45%/62% 38% 62% 38%}
-}
+html{background:#070707}
+body{background:transparent}
+/* Grilla técnica de fondo */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(214,168,78,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(214,168,78,.045) 1px,transparent 1px);
+  background-size:44px 44px;-webkit-mask-image:radial-gradient(120% 90% at 50% 30%,#000 30%,transparent 85%);mask-image:radial-gradient(120% 90% at 50% 30%,#000 30%,transparent 85%)}
 .strip,.booking,footer{background:transparent}
-.strip{border-color:rgba(255,255,255,.08)}
+.booking{border-color:var(--edge)}
 
-/* Vidrio base */
-.glass,.top.scrolled,.btn-ghost,.service,.form,.reviews-empty,.strip .wrap,.lb-btn,.input,.choice label,.eyebrow-pill,.gallery-cta .btn,footer .foot-grid>div{
-  position:relative;
-  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%,rgba(255,255,255,.06));
-  -webkit-backdrop-filter:blur(18px) saturate(170%);
-  backdrop-filter:blur(18px) saturate(170%);
-  border:1px solid var(--glass-edge);
-  box-shadow:var(--glass-inner),var(--glass-shadow);
-}
-/* Brillo especular que sigue al dedo/mouse */
-.sheen{overflow:hidden}
-.sheen::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(240px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.22),transparent 60%);
-  opacity:0;transition:opacity .35s;mix-blend-mode:soft-light}
-.sheen:hover::after,.sheen.lit::after{opacity:.9}
-.top:not(.scrolled)::after{display:none}
-/* Destello que cruza al aparecer */
-.sweep::before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);animation:sweep 6s ease-in-out infinite}
-@keyframes sweep{0%,70%{left:-60%}100%{left:130%}}
+/* Tipografía */
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,7.2vw,3.2rem);line-height:1.04;letter-spacing:-.02em;text-transform:uppercase;margin:.45em 0 .4em}
+.lead{font-size:1rem}
+#servicios,#cortes,#turno,#opiniones{counter-increment:sec}
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.18em;width:100%}
+.eyebrow::before{content:counter(sec,decimal-leading-zero) " //";width:auto;height:auto;background:none;color:rgba(240,205,127,.55)}
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge-2),transparent);transform-origin:left;transform:scaleX(var(--s,0));transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.eyebrow.on{--s:1}
+.logo{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.02em}
+.top nav a{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
 
-/* Barra superior: cápsula flotante de vidrio */
-.top{margin:10px;inset:0 0 auto 0;border-radius:22px;border:1px solid transparent;transition:background .4s,border-color .4s,box-shadow .4s,margin .4s}
-.top.scrolled{border-radius:22px}
+/* Barra superior */
+.top.scrolled{background:rgba(7,7,7,.82);border-color:transparent;box-shadow:0 1px 0 var(--edge)}
+.top.scrolled::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:30%;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);animation:barra 5s linear infinite}
+@keyframes barra{from{transform:translateX(-100%)}to{transform:translateX(400%)}}
 
-/* Botones */
-.btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,background .3s}
-.btn:active{transform:scale(.94,.9)!important}
-.btn-gold{background:linear-gradient(135deg,rgba(248,220,150,.95),rgba(214,168,78,.88) 55%,rgba(150,110,45,.9));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 6px rgba(120,80,20,.35),0 10px 30px -10px rgba(214,168,78,.8);border:1px solid rgba(255,235,190,.6)}
-.btn-ghost{color:var(--text)}
-.btn-ghost:hover{background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06))}
+/* Botones angulares */
+.btn{border-radius:0;position:relative;overflow:hidden;font-family:var(--sans);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.86rem;
+  clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.btn:hover::after,.btn:focus-visible::after{transform:translateX(120%)}
+.btn-gold{background:linear-gradient(100deg,#f7e0a6,#d6a84e 50%,#9c7029);box-shadow:none}
+.btn-gold:hover{box-shadow:none}
+.btn-ghost{background:rgba(214,168,78,.05);border:1px solid var(--edge-2);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(214,168,78,.14)}
+.top .btn{font-size:.72rem;min-height:40px}
 
 /* Encabezado */
-.eyebrow-pill{display:inline-flex;padding:8px 14px;border-radius:999px}
-.eyebrow-pill::before{display:none}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.7rem,14vw,7.6rem);line-height:.92;letter-spacing:-.035em;text-transform:uppercase;margin:16px 0 18px}
+.hero h1 .word{display:block}
+.hero h1 .g{background:linear-gradient(100deg,#fff2cf,#e6bd66 35%,#b8862f 70%,#f0cd7f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:42%;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(rgba(214,168,78,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(214,168,78,.5) 1px,transparent 1px);background-size:64px 64px;
+  transform:perspective(380px) rotateX(64deg);transform-origin:50% 100%;
+  -webkit-mask-image:linear-gradient(to top,#000 0%,transparent 80%);mask-image:linear-gradient(to top,#000 0%,transparent 80%);animation:piso 2.4s linear infinite}
+@keyframes piso{to{background-position:0 64px}}
+.hud{position:absolute;inset:max(84px,calc(env(safe-area-inset-top) + 76px)) 14px 14px;pointer-events:none;z-index:0}
+.hud i{position:absolute;width:22px;height:22px;border-color:var(--edge-2);border-style:solid;border-width:0}
+.hud i:nth-child(1){top:0;left:0;border-top-width:1.5px;border-left-width:1.5px}
+.hud i:nth-child(2){top:0;right:0;border-top-width:1.5px;border-right-width:1.5px}
+.hud i:nth-child(3){bottom:0;left:0;border-bottom-width:1.5px;border-left-width:1.5px}
+.hud i:nth-child(4){bottom:0;right:0;border-bottom-width:1.5px;border-right-width:1.5px}
+.hud .coord{position:absolute;top:8px;left:30px;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:rgba(243,237,227,.7)}
+.hud .coord b{color:var(--gold-2);font-weight:500}
+.eyebrow-hero{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;
+  padding:7px 12px;border:1px solid var(--edge-2);background:rgba(7,7,7,.45);backdrop-filter:blur(6px);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.eyebrow-hero::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+.status{margin-top:18px;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#d8cfbf;display:flex;align-items:center;gap:10px}
+.status .dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:latido 1.8s infinite}
+.status.cerrado .dot{background:#8a8173;animation:none}
+@keyframes latido{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}100%{box-shadow:0 0 0 10px rgba(61,220,132,0)}}
 
-/* Franja de datos en vidrio */
-.strip{padding:14px 0}
-.strip .wrap{border-radius:22px;padding:0 18px}
-.strip li+li{border-color:rgba(255,255,255,.1)}
+/* Franja tipo panel */
+.strip li{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.strip{border-color:var(--edge)}
+.strip li+li{border-color:rgba(214,168,78,.16)}
 
-/* Tarjetas */
-.service{background:linear-gradient(150deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 50%,rgba(214,168,78,.08));border-radius:26px}
-.service::before{opacity:.5}
-.service .tag{background:rgba(214,168,78,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
-.form{border-radius:28px}
-.input,.choice label{background:rgba(0,0,0,.28);border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.choice input:checked+label{background:linear-gradient(135deg,rgba(240,205,127,.22),rgba(214,168,78,.08));border-color:rgba(240,205,127,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 0 0 1px rgba(240,205,127,.5),0 8px 24px -10px rgba(214,168,78,.6)}
-.form .btn{background:linear-gradient(135deg,rgba(80,240,140,.95),rgba(37,211,102,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 10px 30px -12px rgba(37,211,102,.8);border:1px solid rgba(200,255,220,.5)}
-.reviews-empty{border-style:solid;border-radius:28px}
+/* Tarjetas de servicio */
+.service{border-radius:0;border:1px solid var(--edge);
+  background:linear-gradient(155deg,rgba(214,168,78,.10),rgba(255,255,255,.015) 45%,rgba(214,168,78,.04)),#0b0a09;
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.service::before{height:1px;opacity:1;background:linear-gradient(90deg,transparent,var(--gold-2),transparent) no-repeat;background-size:45% 100%;animation:scan 3.6s linear infinite}
+@keyframes scan{from{background-position:-60% 0}to{background-position:160% 0}}
+.service::after{content:"";position:absolute;left:10px;bottom:10px;width:16px;height:16px;border-left:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);opacity:.8}
+.service h3{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:-.01em}
+.price{font-family:var(--display);font-weight:700;font-size:2.1rem;letter-spacing:-.03em;background:linear-gradient(100deg,#fff2cf,#e6bd66 50%,#b8862f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.service .tag{border-radius:0;font-family:var(--mono);font-weight:500;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
 
-/* Galería: marco de vidrio */
-.shot{border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 14px 30px -14px rgba(0,0,0,.7)}
-.shot::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;background:linear-gradient(160deg,rgba(255,255,255,.18),transparent 30%)}
-.clip::after{background-color:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);z-index:2}
+/* Galería con marcos HUD */
+.shot{border-radius:0;clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.shot::before{content:"";position:absolute;inset:8px;z-index:1;pointer-events:none;opacity:.85;transition:inset .4s cubic-bezier(.2,.8,.2,1);
+  background:
+    linear-gradient(var(--gold-2),var(--gold-2)) top right/16px 1.5px no-repeat,
+    linear-gradient(var(--gold-2),var(--gold-2)) top right/1.5px 16px no-repeat,
+    linear-gradient(var(--gold-2),var(--gold-2)) bottom left/16px 1.5px no-repeat,
+    linear-gradient(var(--gold-2),var(--gold-2)) bottom left/1.5px 16px no-repeat}
+.shot:hover::before{inset:4px}
+.clip::after{border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background-color:rgba(7,7,7,.7);width:34px;height:34px;z-index:2}
+
+/* Formulario tipo consola */
+.form{border-radius:0;border:1px solid var(--edge);background:linear-gradient(160deg,rgba(214,168,78,.07),transparent 40%),#0b0a09;
+  clip-path:polygon(22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%,0 22px)}
+.field label,.field legend{font-family:var(--mono);font-weight:500;letter-spacing:.16em;font-size:.72rem;color:rgba(240,205,127,.75)}
+.input,.choice label{border-radius:0;background:rgba(0,0,0,.45);border-color:rgba(214,168,78,.22);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.input:focus{box-shadow:inset 0 0 0 1px var(--gold),inset 0 0 18px rgba(214,168,78,.15)}
+.choice label b{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:-.02em}
+.choice input:checked+label{background:linear-gradient(135deg,rgba(214,168,78,.2),rgba(214,168,78,.04));box-shadow:inset 0 0 0 1px var(--gold-2),inset 0 0 22px rgba(214,168,78,.18)}
+.hint{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em}
+
+/* Opiniones */
+.reviews-empty{border-radius:0;border:1px solid var(--edge);background:repeating-linear-gradient(135deg,rgba(214,168,78,.035) 0 10px,transparent 10px 20px);
+  clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
+.reviews-empty p{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,4.6vw,1.7rem);text-transform:uppercase;letter-spacing:-.01em;line-height:1.2}
+.reviews-empty small{font-family:var(--mono);font-size:.78rem}
 
 /* Pie */
-footer .foot-grid>div{border-radius:22px;padding:20px}
+footer{border-color:var(--edge)}
+footer h4{font-family:var(--mono);font-weight:500}
+.foot-brand .logo{font-size:1.6rem}
+.copy{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em}
 
-/* WhatsApp flotante: gota de vidrio verde */
-.wa-float{background:linear-gradient(145deg,rgba(90,245,150,.85),rgba(37,211,102,.75));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-  border:1px solid rgba(220,255,230,.6);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),inset 0 -6px 12px rgba(0,80,30,.3),0 12px 30px -6px rgba(37,211,102,.55);
-  animation:gota 7s ease-in-out infinite}
-@keyframes gota{0%,100%{border-radius:50%}33%{border-radius:46% 54% 52% 48%/54% 46% 54% 46%}66%{border-radius:54% 46% 47% 53%/47% 53% 47% 53%}}
-.lb-btn{border-radius:50%}
-.wa-float.sheen{overflow:visible}
-@media (prefers-reduced-motion:reduce){.liquid-bg i,.sweep::before,.wa-float{animation:none!important}}
+/* WhatsApp: hexágono */
+.wa-float{border-radius:0;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);width:64px;height:60px;background:linear-gradient(140deg,#5af59a,#25d366 55%,#139a49)}
+.wa-float::before{display:none}
+.lb-btn{border-radius:0;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.lightbox img{border-radius:0}
+
+@media (min-width:720px){
+  .hero h1 .word{display:inline}
+  .hud{inset:96px 28px 28px}
+}
+@media (prefers-reduced-motion:reduce){.floor,.service::before,.top.scrolled::after,.status .dot{animation:none!important}}
 </style>
 </head>
 <body>
-<div class="liquid-bg" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <header class="top" id="top">
   <a class="logo" href="#inicio" aria-label="Cabubarber, ir al inicio">CABU<span>BARBER</span></a>
@@ -308,8 +348,10 @@ footer .foot-grid>div{border-radius:22px;padding:20px}
     <div class="hero-img">
       <video class="hero-media" muted loop playsinline preload="none" poster="video/encabezado.webp" data-src="video/encabezado.mp4" aria-hidden="true"></video>
     </div>
+    <div class="floor" aria-hidden="true"></div>
+    <div class="hud" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="coord"><b>S</b> 28°28′ · <b>O</b> 65°47′ — CATAMARCA</span></div>
     <div class="wrap hero-content">
-      <div class="eyebrow eyebrow-pill h-anim">Barbería · Catamarca</div>
+      <div class="eyebrow-hero h-anim">Barbería · Catamarca</div>
       <h1><span class="word">Cabu</span><span class="word g">barber</span></h1>
       <div class="hero-actions h-anim">
         <a class="btn btn-gold" href="#turno">
@@ -318,6 +360,7 @@ footer .foot-grid>div{border-radius:22px;padding:20px}
         </a>
         <a class="btn btn-ghost" href="#cortes">Mirá los cortes</a>
       </div>
+      <div class="status h-anim" id="estado" aria-live="polite"><span class="dot"></span><span class="txt">Abierto todos los días · 10 a 22 h</span></div>
     </div>
   </section>
 
@@ -593,31 +636,48 @@ document.addEventListener('DOMContentLoaded', function () {
     else window.addEventListener('load', start);
   })();
 
-  /* ---------- Liquid glass: brillo que sigue al dedo y efecto gelatina ---------- */
+  /* ---------- Neofuturista: estado, líneas y títulos que se decodifican ---------- */
   (function () {
-    var els = document.querySelectorAll('.top, .btn, .service, .form, .reviews-empty, .strip .wrap, .wa-float, footer .foot-grid>div');
-    els.forEach(function (el) { el.classList.add('sheen'); });
-    document.querySelectorAll('.form, .strip .wrap').forEach(function (el) { el.classList.add('sweep'); });
-    function move(e) {
-      var t = e.touches ? e.touches[0] : e;
-      els.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        el.style.setProperty('--mx', (t.clientX - r.left) + 'px');
-        el.style.setProperty('--my', (t.clientY - r.top) + 'px');
-      });
+    // Abierto / cerrado según la hora de Catamarca
+    var est = document.getElementById('estado');
+    function estado() {
+      var h = +new Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Catamarca', hour: 'numeric', hour12: false }).format(new Date()) % 24;
+      var abierto = h >= 10 && h < 22;
+      est.classList.toggle('cerrado', !abierto);
+      est.querySelector('.txt').textContent = abierto ? 'Abierto ahora · hasta las 22 h' : 'Cerrado · abrimos a las 10 h';
     }
-    window.addEventListener('pointermove', move, { passive: true });
-    els.forEach(function (el) {
-      el.addEventListener('touchstart', function () { el.classList.add('lit'); }, { passive: true });
-      el.addEventListener('touchend', function () { setTimeout(function () { el.classList.remove('lit'); }, 400); }, { passive: true });
-    });
-    window.addEventListener('touchmove', move, { passive: true });
-    if (!reduceMotion && window.gsap) {
-      document.querySelectorAll('.service, .shot').forEach(function (el) {
-        el.addEventListener('pointerenter', function () { gsap.to(el, { scaleX: 1.015, scaleY: .99, duration: .25, ease: 'power2.out', onComplete: function () { gsap.to(el, { scaleX: 1, scaleY: 1, duration: .9, ease: 'elastic.out(1, .35)' }); } }); });
-      });
-      gsap.to('.liquid-bg', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true } });
+    try { estado(); setInterval(estado, 60000); } catch (e) {}
+
+    var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&/<>';
+    function scramble(el, dur) {
+      if (reduceMotion || el.dataset.done) return;
+      el.dataset.done = 1;
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), nodes = [], n;
+      while ((n = walker.nextNode())) if (n.nodeValue.trim()) nodes.push({ n: n, t: n.nodeValue });
+      var t0 = performance.now();
+      (function frame(now) {
+        var p = Math.min(1, (now - t0) / dur);
+        nodes.forEach(function (o) {
+          var keep = Math.floor(o.t.length * p), out = o.t.slice(0, keep);
+          for (var i = keep; i < o.t.length; i++) out += o.t[i] === ' ' ? ' ' : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          o.n.nodeValue = out;
+        });
+        if (p < 1) requestAnimationFrame(frame);
+      })(t0);
     }
+    var targets = document.querySelectorAll('h2, .eyebrow, .service h3');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          if (e.target.classList.contains('eyebrow')) e.target.classList.add('on');
+          scramble(e.target, e.target.tagName === 'H2' ? 900 : 650);
+          io.unobserve(e.target);
+        });
+      }, { threshold: .4 });
+      targets.forEach(function (t) { io.observe(t); });
+    } else targets.forEach(function (t) { t.classList.add('on'); });
+    setTimeout(function () { document.querySelectorAll('.hero h1 .word').forEach(function (w) { scramble(w, 1100); }); }, 250);
   })();
 
   /* ---------- Galería / visor ---------- */
