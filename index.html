@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/corte-1.webp" type="image/webp">
+<link rel="preload" as="image" href="video/encabezado.webp" type="image/webp">
 <style>
 :root{
   --bg:#0c0b0a;
@@ -70,7 +70,7 @@ section{padding:84px 0;position:relative}
 /* Hero */
 .hero{min-height:100svh;padding:0;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
 .hero-img{position:absolute;inset:0;z-index:-2}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:50% 40%}
+.hero-media{width:100%;height:100%;object-fit:cover;object-position:50% 35%;transform-origin:50% 40%;display:block;background:var(--bg)}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(12,11,10,.55) 0%,rgba(12,11,10,.1) 28%,rgba(12,11,10,.55) 58%,var(--bg) 96%),
   radial-gradient(120% 70% at 50% 100%,rgba(12,11,10,.85),transparent 70%)}
@@ -101,10 +101,12 @@ section{padding:84px 0;position:relative}
 .service .btn{min-height:46px;padding:0 20px;font-size:.92rem}
 
 /* Galería */
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:34px}
-.gallery .shot:first-child{grid-column:span 2;aspect-ratio:4/5}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-flow:dense;gap:10px;margin-top:34px}
+.gallery .wide{grid-column:span 2;aspect-ratio:4/5}
 .shot{position:relative;border-radius:14px;overflow:hidden;background:var(--card);aspect-ratio:3/4;border:0;padding:0;cursor:zoom-in}
-.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s}
+.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s}
+.clip{cursor:default}
+.clip::after{content:"";position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(12,11,10,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0cd7f'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/14px no-repeat;pointer-events:none}
 .shot:hover img{transform:scale(1.05)}
 .gallery-cta{margin-top:22px;display:flex;justify-content:center}
 
@@ -175,14 +177,16 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
   .strip li+li{border-top:0;border-left:1px solid var(--line);padding-left:22px}
   .services{grid-template-columns:1fr 1fr}
   .gallery{grid-template-columns:repeat(3,1fr);gap:14px}
-  .gallery .shot:first-child{grid-column:auto;aspect-ratio:auto}
-  .gallery .shot:first-child,.gallery .shot:nth-child(3){grid-row:span 2;aspect-ratio:auto}
+  .gallery .wide{grid-column:auto;aspect-ratio:3/4}
+  .gallery .tall{grid-row:span 2;aspect-ratio:auto}
   .form{padding:32px}
   .two{grid-template-columns:1fr 1fr}
   .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
   .hero-actions .btn{flex:0 0 auto}
 }
 @media (min-width:1000px){
+  .hero-img{left:auto;width:min(640px,50vw)}
+  .hero-media{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
   .booking .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start}
   .booking .form{margin-top:0}
 }
@@ -208,7 +212,7 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
   <!-- Encabezado -->
   <section class="hero" id="inicio">
     <div class="hero-img">
-      <img src="img/corte-1.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="100vw" width="900" height="1200" alt="Corte hecho en Cabubarber" fetchpriority="high">
+      <video class="hero-media" muted loop playsinline preload="none" poster="video/encabezado.webp" data-src="video/encabezado.mp4" aria-hidden="true"></video>
     </div>
     <div class="wrap hero-content">
       <div class="eyebrow h-anim">Barbería · Catamarca</div>
@@ -267,11 +271,14 @@ footer li svg{width:20px;height:20px;color:var(--gold);flex:none}
       <h2 class="reveal">Cortes de <span class="gold">la casa</span></h2>
       <p class="lead reveal">Algunos de los cortes que salieron de la silla. Tocá una foto para verla grande.</p>
       <div class="gallery" id="gallery">
-        <button class="shot" type="button"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 1"></button>
+        <button class="shot wide tall" type="button"><img src="img/corte-1-chica.webp" srcset="img/corte-1-chica.webp 480w, img/corte-1.webp 900w" sizes="(min-width:720px) 34vw, 100vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 1"></button>
         <button class="shot" type="button"><img src="img/corte-7-chica.webp" srcset="img/corte-7-chica.webp 480w, img/corte-7.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 2"></button>
+        <div class="shot clip tall"><video muted loop playsinline preload="none" poster="video/corte-b.webp" data-src="video/corte-b.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-2-chica.webp" srcset="img/corte-2-chica.webp 480w, img/corte-2.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 3"></button>
         <button class="shot" type="button"><img src="img/corte-3-chica.webp" srcset="img/corte-3-chica.webp 480w, img/corte-3.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 4"></button>
+        <div class="shot clip"><video muted loop playsinline preload="none" poster="video/corte-a.webp" data-src="video/corte-a.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-4-chica.webp" srcset="img/corte-4-chica.webp 480w, img/corte-4.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 5"></button>
+        <div class="shot clip wide"><video muted loop playsinline preload="none" poster="video/corte-c.webp" data-src="video/corte-c.mp4" aria-label="Video de un corte hecho en Cabubarber"></video></div>
         <button class="shot" type="button"><img src="img/corte-5-chica.webp" srcset="img/corte-5-chica.webp 480w, img/corte-5.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 6"></button>
         <button class="shot" type="button"><img src="img/corte-6-chica.webp" srcset="img/corte-6-chica.webp 480w, img/corte-6.webp 900w" sizes="(min-width:720px) 34vw, 50vw" width="480" height="640" loading="lazy" decoding="async" alt="Corte hecho en Cabubarber, foto 7"></button>
       </div>
@@ -447,11 +454,11 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.registerPlugin(ScrollTrigger);
 
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.hero-img img', { scale: 1.12, duration: 2.2, ease: 'power2.out' }, 0)
+    tl.from('.hero-media', { scale: 1.12, duration: 2.2, ease: 'power2.out' }, 0)
       .from('.hero h1 .word', { yPercent: 110, duration: 1.1, stagger: .12 }, .15)
       .from('.h-anim', { y: 24, autoAlpha: 0, duration: .9, stagger: .12 }, .45);
 
-    gsap.to('.hero-img img', {
+    gsap.to('.hero-media', {
       yPercent: 12, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
@@ -470,8 +477,30 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
   }
 
+  /* ---------- Videos: cargan solo cuando aparecen en pantalla ---------- */
+  (function () {
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video[data-src]'));
+    var conn = navigator.connection || {};
+    if (!vids.length || reduceMotion || conn.saveData) return; // quedan las imágenes de portada
+    function load(v) { if (!v.getAttribute('src')) v.src = v.getAttribute('data-src'); }
+    function play(v) { load(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function start() {
+      if (!('IntersectionObserver' in window)) { vids.forEach(play); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) play(e.target);
+          else if (e.target.getAttribute('src')) e.target.pause();
+        });
+      }, { threshold: 0.15 });
+      vids.forEach(function (v) { io.observe(v); });
+    }
+    // primero carga la página, después los videos
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start);
+  })();
+
   /* ---------- Galería / visor ---------- */
-  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var shots = Array.prototype.slice.call(document.querySelectorAll('button.shot'));
   var lb = document.getElementById('lightbox');
   var lbImg = lb.querySelector('img');
   var current = 0, lastFocus = null;
